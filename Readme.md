@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Никита Семенов](https://up.htmlacademy.ru/javascript/21/user/1406441).
-* Наставник: `Неизвестно`.
+* Наставник: Дмитрий Смирнов.
 
 ---
 
