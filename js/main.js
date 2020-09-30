@@ -17,7 +17,7 @@
   const pinMapTemplate = pinTemplate.querySelector(`.map__pin`);
 
   const getRandomNumber = (min, max) => {
-    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    const rand = min - 0.5 + Math.random() * (max - min + 1);
     return Math.round(rand);
   };
 
@@ -29,11 +29,11 @@
     const arrayCopy = array.slice();
     const quantiyDeletedItem = getRandomNumber(0, FEATURES.length - 1);
     for (let i = 0; i < quantiyDeletedItem; i++) {
-      let arrayCopyElement = getRandomElementArray(arrayCopy);
-      arrayCopy.splice(arrayCopy.indexOf(arrayCopyElement), 1)
+      const arrayCopyElement = getRandomElementArray(arrayCopy);
+      arrayCopy.splice(arrayCopy.indexOf(arrayCopyElement), 1);
     }
     return arrayCopy;
-  }
+  };
 
   const getRandomLocation = () => {
     return {
@@ -43,7 +43,7 @@
   };
 
   const getPlacementData = (placementNumber) => {
-    const placementLocation = getRandomLocation()
+    const placementLocation = getRandomLocation();
     return {
       author: {
         avatar: `img/avatars/user0${placementNumber}.png`
@@ -62,7 +62,7 @@
         photos: getRandomArray(PHOTOS)
       },
       location: getRandomLocation()
-    }
+    };
   };
 
   const renderPlacement = (pin) => {
@@ -78,14 +78,14 @@
 
   const getFragment = (fragmentItems) => {
     const fragment = document.createDocumentFragment();
-    fragmentItems.forEach(item => {
-      fragment.appendChild(renderPlacement(fragmentItems[item]));
+    fragmentItems.forEach((item) => {
+      fragment.appendChild(renderPlacement(item));
     });
     for (let i = 0; i < fragmentItems.length; i++) {
       fragment.appendChild(renderPlacement(fragmentItems[i]));
     }
     return fragment;
-  }
+  };
 
   const getRandomPins = () => {
     const pins = [];
@@ -93,10 +93,10 @@
       pins.push(getPlacementData(i));
     }
     return pins;
-  }
+  };
 
   const pins = getRandomPins();
   mapPins.appendChild(getFragment(pins));
 
-  map.classList.remove('map--faded');
+  map.classList.remove(`map--faded`);
 })();
