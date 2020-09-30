@@ -76,14 +76,12 @@
     return pinElement;
   };
 
-  const getFragment = (fragmentItems) => {
+  const getFragment = (pins) => {
     const fragment = document.createDocumentFragment();
-    fragmentItems.forEach((item) => {
+    pins.forEach((item) => {
       fragment.appendChild(renderPlacement(item));
     });
-    // for (let i = 0; i < fragmentItems.length; i++) {
-    //   fragment.appendChild(renderPlacement(fragmentItems[i]));
-    // }
+
     return fragment;
   };
 
