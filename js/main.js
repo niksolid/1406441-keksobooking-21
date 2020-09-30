@@ -81,9 +81,9 @@
     fragmentItems.forEach((item) => {
       fragment.appendChild(renderPlacement(item));
     });
-    for (let i = 0; i < fragmentItems.length; i++) {
-      fragment.appendChild(renderPlacement(fragmentItems[i]));
-    }
+    // for (let i = 0; i < fragmentItems.length; i++) {
+    //   fragment.appendChild(renderPlacement(fragmentItems[i]));
+    // }
     return fragment;
   };
 
