@@ -12,11 +12,9 @@
   const map = document.querySelector(`.map`);
   const mapPins = map.querySelector(`.map__pins`);
   const mapWidth = mapPins.offsetWidth;
-  console.log(mapWidth)
 
   const pinTemplate = document.querySelector(`#pin`).content;
   const pinMapTemplate = pinTemplate.querySelector(`.map__pin`);
-  console.log(pinTemplate);
 
   const getRandomNumber = (min, max) => {
     let rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -44,7 +42,7 @@
     };
   };
 
-  const getPlacementInformation = (placementNumber) => {
+  const getPlacementData = (placementNumber) => {
     const placementLocation = getRandomLocation()
     return {
       author: {
@@ -80,23 +78,25 @@
 
   const getFragment = (fragmentItems) => {
     const fragment = document.createDocumentFragment();
+    fragmentItems.forEach(item => {
+      fragment.appendChild(renderPlacement(fragmentItems[item]));
+    });
     for (let i = 0; i < fragmentItems.length; i++) {
-      console.log(i);
       fragment.appendChild(renderPlacement(fragmentItems[i]));
     }
     return fragment;
   }
 
-  const renderPins = () => {
+  const getRandomPins = () => {
     const pins = [];
     for (let i = 1; i <= 8; i++) {
-      pins.push(getPlacementInformation(i));
+      pins.push(getPlacementData(i));
     }
-
-    mapPins.appendChild(getFragment(pins));
+    return pins;
   }
 
-  renderPins();
+  const pins = getRandomPins();
+  mapPins.appendChild(getFragment(pins));
 
   map.classList.remove('map--faded');
 })();
