@@ -27,7 +27,6 @@
     return array[Math.floor(array.length * Math.random())];
   };
 
-
   const getRandomArray = (array) => {
     const arrayCopy = array.slice();
     const quantiyDeletedItem = getRandomNumber(0, FEATURES.length - 1);
@@ -37,8 +36,6 @@
     }
     return arrayCopy;
   };
-
-
 
   const getRandomLocation = () => {
     return {
@@ -110,30 +107,15 @@
     const popupFeatures = popup.querySelector(`.popup__features`);
     const popupDescription = popup.querySelector(`.popup__description`);
     const popupPhotos = popup.querySelector(`.popup__photos`);
-    // const getFeatureList = () => {
-    //   const popupList = popupFeatures.cloneNode(false);
-    //   pin.offer.features.forEach(item => {
-    //     popupList.append(getFeatureNodeElement(item));
-    //   });
-    //   popupFeatures.replaceWith(popupList);
-    // };
-
-    // const getImageList = () => {
-    //   const popupItem = popupPhotos.cloneNode(false);
-    //   pin.offer.photos.forEach((item, i) => {
-    //     popupItem.append(getPhotoNodeElement(item));
-    //   });
-    //   popupPhotos.replaceWith(popupItem)
-    // };
 
     const replaceFeature = (popupChild) => {
-      pin.offer.features.forEach(item => {
+      pin.offer.features.forEach((item) => {
         popupChild.append(popupFeatures.querySelector(`.popup__feature--${item}`));
       });
       return popupChild;
     };
     const replacePhoto = (popupChild) => {
-      pin.offer.photos.forEach(item => {
+      pin.offer.photos.forEach((item) => {
         const popupPhoto = popupPhotos.querySelector(`.popup__photo`).cloneNode(true);
         popupPhoto.src = item;
         popupChild.append(popupPhoto);
@@ -164,7 +146,7 @@
       case `place`:
         popupType.textContent = `Дворец`;
         break;
-    };
+    }
     popupCapacity.textContent = `${pin.offer.rooms} комнаты для ${pin.offer.guests} гостей`;
     popupTime.textContent = `Заезд после ${pin.offer.checkin}, выезд до ${pin.offer.checkout}`;
     replaceChildrens(popupFeatures, replaceFeature);
