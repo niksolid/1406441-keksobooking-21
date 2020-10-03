@@ -15,6 +15,8 @@
 
   const pinTemplate = document.querySelector(`#pin`).content;
   const pinMapTemplate = pinTemplate.querySelector(`.map__pin`);
+  const cardTemplate = document.querySelector(`#card`).content;
+  const cardPopup = cardTemplate.querySelector(`.popup`);
 
   const getRandomNumber = (min, max) => {
     const rand = min - 0.5 + Math.random() * (max - min + 1);
@@ -76,15 +78,6 @@
     return pinElement;
   };
 
-  const getFragment = (pins) => {
-    const fragment = document.createDocumentFragment();
-    pins.forEach((item) => {
-      fragment.appendChild(renderPlacement(item));
-    });
-
-    return fragment;
-  };
-
   const getRandomPins = () => {
     const pins = [];
     for (let i = 1; i <= 8; i++) {
@@ -93,8 +86,79 @@
     return pins;
   };
 
+  const getFragment = (pins, renderDOM) => {
+    const fragment = document.createDocumentFragment();
+    pins.forEach((pin) => {
+      fragment.append(renderDOM(pin));
+    });
+
+    return fragment;
+  };
+
+  const renderPinPopup = (pin) => {
+    const popup = cardPopup.cloneNode(true);
+    const popupAvatar = popup.querySelector(`.popup__avatar`);
+    const popupTitle = popup.querySelector(`.popup__title`);
+    const popupAddress = popup.querySelector(`.popup__text--address`);
+    const popupPrice = popup.querySelector(`.popup__text--price`);
+    const popupType = popup.querySelector(`.popup__type`);
+    const popupCapacity = popup.querySelector(`.popup__text--capacity`);
+    const popupTime = popup.querySelector(`.popup__text--time`);
+    const popupFeatures = popup.querySelector(`.popup__features`);
+    const popupDescription = popup.querySelector(`.popup__description`);
+    const popupPhotos = popup.querySelector(`.popup__photos`);
+
+    const replaceFeature = (popupChild) => {
+      pin.offer.features.forEach((item) => {
+        popupChild.append(popupFeatures.querySelector(`.popup__feature--${item}`));
+      });
+      return popupChild;
+    };
+    const replacePhoto = (popupChild) => {
+      pin.offer.photos.forEach((item) => {
+        const popupPhoto = popupPhotos.querySelector(`.popup__photo`).cloneNode(true);
+        popupPhoto.src = item;
+        popupChild.append(popupPhoto);
+      });
+      return popupChild;
+    };
+
+    const replaceChildrens = (popupParent, replaceFunction) => {
+      const popupChild = popupParent.cloneNode(false);
+      replaceFunction(popupChild);
+      popupParent.replaceWith(popupChild);
+    };
+
+    popupAvatar.src = pin.author.avatar;
+    popupTitle.textContent = pin.offer.title;
+    popupAddress.textContent = pin.offer.address;
+    popupPrice.textContent = `${pin.offer.price}₽/ночь`;
+    switch (pin.offer.type) {
+      case `flat`:
+        popupType.textContent = `Квартира`;
+        break;
+      case `bungalow`:
+        popupType.textContent = `Бунгало`;
+        break;
+      case `house`:
+        popupType.textContent = `Дом`;
+        break;
+      case `place`:
+        popupType.textContent = `Дворец`;
+        break;
+    }
+    popupCapacity.textContent = `${pin.offer.rooms} комнаты для ${pin.offer.guests} гостей`;
+    popupTime.textContent = `Заезд после ${pin.offer.checkin}, выезд до ${pin.offer.checkout}`;
+    replaceChildrens(popupFeatures, replaceFeature);
+    replaceChildrens(popupPhotos, replacePhoto);
+    popupDescription.textContent = pin.offer.description;
+
+    return popup;
+  };
+
   const pins = getRandomPins();
-  mapPins.appendChild(getFragment(pins));
+  mapPins.append(getFragment(pins, renderPlacement));
+  mapPins.after(getFragment(pins, renderPinPopup));
 
   map.classList.remove(`map--faded`);
 })();
