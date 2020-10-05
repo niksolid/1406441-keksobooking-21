@@ -156,9 +156,50 @@
     return popup;
   };
 
-  const pins = getRandomPins();
-  mapPins.append(getFragment(pins, renderPlacement));
-  mapPins.after(getFragment(pins, renderPinPopup));
+  const renderPins = () => {
+    const pins = getRandomPins();
+    mapPins.append(getFragment(pins, renderPlacement));
+    mapPins.after(getFragment(pins, renderPinPopup));
+  };
 
-  map.classList.remove(`map--faded`);
+  const pinMain = mapPins.querySelector(`.map__pin--main`);
+  const adForm = document.querySelector(`.ad-form`);
+  const adFormFieldsets = adForm.querySelectorAll(`fieldset`);
+  const mapFilters = map.querySelector(`.map__filters`);
+  // const mapFilterSelect = map.querySelectorAll(`.map__filter`);
+  // const mapFilterFieldset = map.querySelector(`.map__features`);
+
+  const toggleState = (domElement, isActive) => {
+    if (isActive) {
+      domElement.removeAttribute(`disabled`);
+    } else {
+      domElement.setAttribute(`disabled`, true);
+    }
+  };
+
+  const pageState = (isActive) => {
+    if (isActive) {
+      map.classList.remove(`map--faded`);
+      adForm.classList.remove(`ad-form--disabled`);
+    } else {
+      map.classList.add(`map--faded`);
+      adForm.classList.add(`ad-form--disabled`);
+    }
+
+    for (let i = 0; i < adFormFieldsets.length; i++) {
+      toggleState(adFormFieldsets[i], isActive);
+    }
+
+    for (let i = 0; i < mapFilters.children.length; i++) {
+      toggleState(mapFilters.children[i], isActive);
+    }
+  };
+
+  pinMain.addEventListener(`mousedown`, () => {
+    pageState(true);
+    renderPins();
+  });
+
+  pageState(false);
+
 })();
