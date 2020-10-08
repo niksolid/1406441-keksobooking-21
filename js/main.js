@@ -8,6 +8,14 @@
   const PHOTOS = [`http://o0.github.io/assets/images/tokyo/hotel1.jpg`, `http://o0.github.io/assets/images/tokyo/hotel2.jpg`, `http://o0.github.io/assets/images/tokyo/hotel3.jpg`];
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
+  // const defaultParamets = {
+  //   pinMain: {
+  //     x: 570,
+  //     y: 350
+  //   },
+  //   roomNumber: 1,
+  //   capacity: 1,
+  // };
 
   const map = document.querySelector(`.map`);
   const mapPins = map.querySelector(`.map__pins`);
@@ -166,6 +174,7 @@
   const adForm = document.querySelector(`.ad-form`);
   const adFormFieldsets = adForm.querySelectorAll(`fieldset`);
   const mapFilters = map.querySelector(`.map__filters`);
+  const addressInput = adForm.querySelector(`#address`);
   // const mapFilterSelect = map.querySelectorAll(`.map__filter`);
   // const mapFilterFieldset = map.querySelector(`.map__features`);
 
@@ -184,6 +193,9 @@
     } else {
       map.classList.add(`map--faded`);
       adForm.classList.add(`ad-form--disabled`);
+      getAddress();
+      // параметры для будущей функции возврата в исходное состояние
+      capacitySelection(roomNumber.value);
     }
 
     for (let i = 0; i < adFormFieldsets.length; i++) {
@@ -195,9 +207,61 @@
     }
   };
 
-  pinMain.addEventListener(`mousedown`, () => {
-    pageState(true);
-    renderPins();
+  const PIN_MAIN_SIZE = 65;
+  const PIN_MAIN_SIZE_TIP = 22;
+
+  const getAddress = (isActive) => {
+    let axisX = parseInt(pinMain.style.left, 10);
+    let axisY = parseInt(pinMain.style.top, 10);
+    axisX = Math.floor(axisX + PIN_MAIN_SIZE / 2);
+    if (isActive) {
+      axisY = Math.floor(axisY + (PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP));
+    } else {
+      axisY = Math.floor(axisY + (PIN_MAIN_SIZE / 2));
+    }
+    addressInput.value = (`${axisX}, ${axisY}`);
+  };
+
+  const roomNumber = adForm.querySelector(`#room_number`);
+  const capacity = adForm.querySelector(`#capacity`);
+  const capacityFragment = document.createDocumentFragment();
+
+  const transferCapacityItem = (item, roomValue) => {
+    if (+roomValue === 100 && +item.value !== 0) {
+      capacityFragment.append(item);
+    } else if (+item.value > +roomValue) {
+      capacityFragment.append(item);
+    } else if (+item.value === 0 && +roomValue !== 100) {
+      capacityFragment.append(item);
+    }
+  };
+
+  const capacitySelection = (roomValue) => {
+    capacity.appendChild(capacityFragment);
+    const options = capacity.querySelectorAll(`option`);
+    options.forEach((item) => {
+      transferCapacityItem(item, roomValue);
+    });
+  };
+
+  roomNumber.addEventListener(`input`, () => {
+    const value = roomNumber.value;
+    capacitySelection(value);
+  });
+
+  pinMain.addEventListener(`mousedown`, (evt) => {
+    if (evt.button === 0) {
+      pageState(true);
+      renderPins();
+      getAddress(true);
+    }
+  });
+
+  pinMain.addEventListener(`keydown`, (evt) => {
+    if (evt.keyCode === 13) {
+      pageState(true);
+      renderPins();
+    }
   });
 
   pageState(false);
