@@ -8,30 +8,18 @@
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
 
-  const getPlacementData = (placementNumber) => {
-    const placementLocation = window.util.getRandomLocation();
-    return {
-      author: {
-        avatar: `img/avatars/user0${placementNumber}.png`
-      },
-      offer: {
-        title: `Заголовок объявления`,
-        address: `${placementLocation.x}, ${placementLocation.y}`,
-        price: window.util.getRandomNumber(1, 100) * 100,
-        type: window.util.getRandomElementArray(TYPES_OF_HOUSING),
-        rooms: window.util.getRandomNumber(1, 7),
-        guests: window.util.getRandomNumber(2, 20),
-        checkin: window.util.getRandomElementArray(CHECK_TIMES),
-        checkout: window.util.getRandomElementArray(CHECK_TIMES),
-        features: window.util.getRandomArray(FEATURES),
-        description: `Описание про Lorem ipsum dolor sit amet, consectetuer adipiscing elit...`,
-        photos: window.util.getRandomArray(PHOTOS)
-      },
-      location: window.util.getRandomLocation()
-    };
+  const errorHandler = (errorMessage) => {
+    const node = document.createElement(`div`);
+    node.style = `z-index: 100; margin: 0 auto; text-align: center; background-color: red;`;
+    node.style.position = `absolute`;
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = `30px`;
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement(`afterbegin`, node);
   };
 
-  const renderPlacement = (pin) => {
+  const renderPlacesNearby = (pin) => {
     const pinElement = window.templates.pinMapTemplate.cloneNode(true);
     const pinImage = pinElement.querySelector(`img`);
     pinElement.style.top = pin.location.x;
@@ -42,18 +30,26 @@
     return pinElement;
   };
 
-  const getRandomPins = () => {
+  const getPinsNearby = (elements) => {
     const pins = [];
-    for (let i = 1; i <= 8; i++) {
-      pins.push(getPlacementData(i));
+    for (let i = 0; i < elements.length; i++) {
+      pins.push(elements[i]);
     }
     return pins;
   };
 
-  window.renderPins = () => {
-    const pins = getRandomPins();
-    window.mapPins.append(window.util.getFragment(pins, renderPlacement));
-    window.mapPins.after(window.util.getFragment(pins, window.renderPinPopup));
-  };
+  const sucsessHandler = (pins) => {
+    window.pinsData = pins
+    window.renderPins = () => {
+
+      const currentPins = getPinsNearby(pins);
+      window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
+      // window.mapPins.after(window.util.getFragment(currentPins, window.renderPinPopup));
+    };
+  }
+
+  window.loadData(sucsessHandler, errorHandler)
+
+  // window.loadData(renderPins, errorHandler);
 
 })();

@@ -26,8 +26,16 @@
   };
 
   window.pinMain.addEventListener(`mousedown`, (evt) => {
+    evt.preventDefault();
     if (evt.button === 0) {
+      // window.delitePins() - еще не написана
       window.pageState(true);
+    }
+  });
+
+  window.pinMain.addEventListener(`mouseup`, (evt) => {
+    evt.preventDefault();
+    if (evt.button === 0) {
       window.renderPins();
       window.formValid.getAddress(true);
     }
