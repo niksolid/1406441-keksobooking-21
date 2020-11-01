@@ -24,19 +24,4 @@
       window.util.toggleState(mapFilters.children[i], isActive);
     }
   };
-
-  window.pinMain.addEventListener(`mousedown`, (evt) => {
-    if (evt.button === 0) {
-      window.pageState(true);
-      window.renderPins();
-      window.formValid.getAddress(true);
-    }
-  });
-
-  window.pinMain.addEventListener(`keydown`, (evt) => {
-    if (evt.keyCode === 13) {
-      window.pageState(true);
-      window.renderPins();
-    }
-  });
 })();
