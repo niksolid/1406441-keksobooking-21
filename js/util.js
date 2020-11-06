@@ -6,7 +6,6 @@
   window.mapPins = window.map.querySelector(`.map__pins`);
   window.pinMain = window.mapPins.querySelector(`.map__pin--main`);
 
-  // const mapWidth = window.mapPins.offsetWidth;
   const pinTemplate = document.querySelector(`#pin`).content;
   const cardTemplate = document.querySelector(`#card`).content;
 

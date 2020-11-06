@@ -24,4 +24,5 @@
       window.util.toggleState(mapFilters.children[i], isActive);
     }
   };
+
 })();

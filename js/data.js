@@ -44,7 +44,10 @@
 
       const currentPins = getPinsNearby(pins);
       window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
-      // window.mapPins.after(window.util.getFragment(currentPins, window.renderPinPopup));
+      console.log(window.mapPins)
+      window.openPopupOffer(currentPins);
+      // window.mapPins.after(window.util.getFragment([currentPins[4]], window.renderPinPopup));
+      // window.renderPinPopup(currentPins[1]);
     };
   }
 

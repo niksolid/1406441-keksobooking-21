@@ -1,31 +1,20 @@
 'use strict';
 
 (() => {
-  window.pinMain.addEventListener(`mousedown`, (evt) => {
-    evt.preventDefault();
-    const shift = {
+  window.openPopupOffer = (pins) => {
+    const choosenPins = window.mapPins.querySelectorAll(`.map__pin`)
 
-    }
-    if (evt.button === 0) {
-      // window.delitePins() - еще не написана
-      window.pageState(true);
-    }
-  });
+    console.log(choosenPins)
 
-  window.pinMain.addEventListener(`mouseup`, (evt) => {
+    choosenPins.addEventListener(`click`, (evt) => {
+      const target = evt.target
+      console.log(target)
+      evt.preventDefault();
 
-    if (evt.button === 0) {
-      window.renderPins();
-      window.formValid.getAddress(true);
-    }
-  });
+      if (evt.button === window.evtButtons.mouseLeftBtn) {
 
-  window.pinMain.addEventListener(`keydown`, (evt) => {
-    evt.preventDefault();
-    if (evt.keyCode === 13) {
-      window.pageState(true);
-      window.renderPins();
-    }
-  });
+      }
+    });
 
+  };
 })();
