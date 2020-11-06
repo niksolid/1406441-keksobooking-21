@@ -2,17 +2,15 @@
 
 (() => {
   window.openPopupOffer = (pins) => {
-    const choosenPins = window.mapPins.querySelectorAll(`.map__pin`)
 
-    console.log(choosenPins)
-
-    choosenPins.addEventListener(`click`, (evt) => {
-      const target = evt.target
-      console.log(target)
+    window.mapPins.addEventListener(`click`, (evt) => {
       evt.preventDefault();
 
       if (evt.button === window.evtButtons.mouseLeftBtn) {
-
+        const target = evt.target
+        if (target.contains(`.map__pin--main`)) {
+          console.log(target)
+        }
       }
     });
 
