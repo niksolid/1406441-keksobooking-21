@@ -16,6 +16,15 @@
 
     if (evt.button === window.evtButtons.mouseLeftBtn) {
       window.pageState(true);
+      window.util.removePins();
+      // const displayedPins = window.mapPins.querySelectorAll(`.map__pin`)
+      // displayedPins.forEach((pin) => {
+      //   if (!(pin.closest(`.map__pin--main`))) {
+      //     pin.remove();
+      //   }
+      // });
+
+
 
       let startCoords = {
         x: evt.clientX,
@@ -48,10 +57,10 @@
           dragY = maxHeight;
         }
 
-        if (dragX < minWidth -  pinMainShift) {
-          dragX = minWidth -  pinMainShift;
-        } else if (dragX > mapWidth -  pinMainShift) {
-          dragX = mapWidth -  pinMainShift;
+        if (dragX < minWidth - pinMainShift) {
+          dragX = minWidth - pinMainShift;
+        } else if (dragX > mapWidth - pinMainShift) {
+          dragX = mapWidth - pinMainShift;
         }
 
         window.pinMain.style.top = dragY + `px`;
@@ -64,7 +73,7 @@
         document.removeEventListener(`mousemove`, onMouseMove);
         document.removeEventListener(`mouseup`, onMouseUp);
 
-        window.renderPins();
+        window.util.placePins();
         window.formValid.getAddress(true);
 
         if (dragged) {
@@ -86,7 +95,7 @@
     evt.preventDefault();
     if (evt.keyCode === window.evtButtons.keyEnter) {
       window.pageState(true);
-      window.renderPins();
+      // window.renderPins();
     }
   });
 

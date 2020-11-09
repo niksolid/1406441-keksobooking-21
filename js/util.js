@@ -35,6 +35,29 @@
   //   };
   // };
 
+
+  const utilPlacePins = () => {
+
+    const pins = window.shownPins.querySelectorAll(`.map__pin`)
+    console.log(pins)
+    console.log(window.shownPins)
+    pins.forEach((pin) => {
+      console.log('a')
+      pin.classList.add(`map__pin--shown`)
+      window.mapPins.append(pin);
+    });
+  };
+
+  const utilRemovePins = () => {
+    const pins = window.mapPins.querySelectorAll(`.map__pin--shown`)
+    pins.forEach((pin) => {
+      pin.classList.remove(`map__pin--shown`);
+      window.shownPins.append(pin);
+    });
+  };
+
+
+
   const getUtilFragment = (pins, renderDOM) => {
     const fragment = document.createDocumentFragment();
     //изменить цикл (макс 5 значений, сортировка по критериям)
@@ -53,6 +76,16 @@
     }
   };
 
+  // const utilClosestItemByClass = (item, className) {
+  //   while(item) {
+  //     if (item.classList.contains(className)) {
+  //       return item;
+  //     }
+
+  //     item = item.parentElement;
+  //   }
+  // };
+
   window.templates = {
     cardPopup: cardTemplate.querySelector(`.popup`),
     pinMapTemplate: pinTemplate.querySelector(`.map__pin`)
@@ -62,6 +95,8 @@
     // getRandomElementArray: getUtilRandomElementArray,
     // getRandomArray: getUtilRandomArray,
     // getRandomLocation: getUtilRandomLocation,
+    placePins: utilPlacePins,
+    removePins: utilRemovePins,
     getFragment: getUtilFragment,
     toggleState: utilToggleState
   };

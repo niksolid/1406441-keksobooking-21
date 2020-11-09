@@ -6,6 +6,7 @@
 
   const PIN_MAIN_SIZE = 65;
   const PIN_MAIN_SIZE_TIP = 22;
+
   const addressInput = window.adForm.querySelector(`#address`);
   const capacity = window.adForm.querySelector(`#capacity`);
   const capacityFragment = document.createDocumentFragment();

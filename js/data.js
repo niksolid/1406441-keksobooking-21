@@ -20,13 +20,14 @@
   };
 
   const renderPlacesNearby = (pin) => {
+    console.log(pin)
     const pinElement = window.templates.pinMapTemplate.cloneNode(true);
     const pinImage = pinElement.querySelector(`img`);
     pinElement.style.top = pin.location.x;
     pinElement.style = `top: ${pin.location.y - PIN_OFFSET_Y}px; left: ${pin.location.x - (PIN_OFFSET_X / 2)}px;`;
     pinImage.src = pin.author.avatar;
     pinImage.alt = pin.offer.title;
-
+    console.log(pinElement)
     return pinElement;
   };
 
@@ -40,17 +41,33 @@
 
   const sucsessHandler = (pins) => {
     window.pinsData = pins
-    window.renderPins = () => {
+    window.shownPins = document.createDocumentFragment();
 
-      const currentPins = getPinsNearby(pins);
-      window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
-      console.log(window.mapPins)
-      window.openPopupOffer(currentPins);
+    const currentPins = getPinsNearby(pins);
+    window.shownPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
+    const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`)
+    fragmentPins.forEach((pin, i) => {
+      pin.classList.add(`map__pin--${i}`)
+    });
+
+
+    // window.renderPins = () => {
+
+
+
+
+
+
+
+
+
+      // window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
       // window.mapPins.after(window.util.getFragment([currentPins[4]], window.renderPinPopup));
       // window.renderPinPopup(currentPins[1]);
-    };
+    // };
   }
 
+  window.loadData(sucsessHandler, errorHandler)
   window.loadData(sucsessHandler, errorHandler)
 
 })();
