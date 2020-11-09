@@ -39,10 +39,7 @@
   const utilPlacePins = () => {
 
     const pins = window.shownPins.querySelectorAll(`.map__pin`)
-    console.log(pins)
-    console.log(window.shownPins)
     pins.forEach((pin) => {
-      console.log('a')
       pin.classList.add(`map__pin--shown`)
       window.mapPins.append(pin);
     });

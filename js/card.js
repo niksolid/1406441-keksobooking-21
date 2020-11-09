@@ -6,9 +6,11 @@
     const openPopup = (evt) => {
       evt.preventDefault();
 
-      window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
+
+      // window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
 
       const currentTarget = evt.target;
+      console.log(currentTarget)
       if (!(currentTarget.closest(`.map__pin--main`))) {
         if (evt.button === window.evtButtons.mouseLeftBtn) {
           console.log(currentTarget.parentElement)
