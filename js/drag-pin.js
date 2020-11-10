@@ -7,8 +7,10 @@
   const minWidth = 0;
   window.evtButtons = {
     mouseLeftBtn: 0,
-    keyEnter: 13
-  }
+    keyEnter: 13,
+    keyEsc: 27
+  };
+
   const pinMainShift = window.pinMain.offsetWidth / 2;
 
   window.pinMain.addEventListener(`mousedown`, (evt) => {
@@ -17,14 +19,6 @@
     if (evt.button === window.evtButtons.mouseLeftBtn) {
       window.pageState(true);
       window.util.removePins();
-      // const displayedPins = window.mapPins.querySelectorAll(`.map__pin`)
-      // displayedPins.forEach((pin) => {
-      //   if (!(pin.closest(`.map__pin--main`))) {
-      //     pin.remove();
-      //   }
-      // });
-
-
 
       let startCoords = {
         x: evt.clientX,

@@ -1,9 +1,6 @@
 'use strict';
 
 (() => {
-  window.adForm = document.querySelector(`.ad-form`);
-  window.roomNumber = window.adForm.querySelector(`#room_number`);
-
   const PIN_MAIN_SIZE = 65;
   const PIN_MAIN_SIZE_TIP = 22;
 
@@ -33,7 +30,7 @@
     }
   };
 
-  const validCapacitySelection = (roomValue) => {
+  const capacitySelection = (roomValue) => {
     capacity.appendChild(capacityFragment);
     const options = capacity.querySelectorAll(`option`);
     options.forEach((item) => {
@@ -41,14 +38,43 @@
     });
   };
 
+  const priceLimit = (minPrice) => {
+    window.price.min = minPrice;
+    window.price.placeholder = minPrice;
+  };
+
   window.roomNumber.addEventListener(`input`, () => {
     const value = window.roomNumber.value;
-    window.formValid.capacitySelection(value);
+    capacitySelection(value);
+  });
+
+  window.type.addEventListener(`input`, () => {
+    switch (window.type.value) {
+      case `bungalow`:
+        priceLimit(0);
+        break;
+      case `flat`:
+        priceLimit(1000);
+        break;
+      case `house`:
+        priceLimit(5000);
+        break;
+      case `palace`:
+        priceLimit(10000);
+        break;
+    }
   });
 
   window.formValid = {
-    capacitySelection: validCapacitySelection,
-    getAddress: getAddressForm,
+    getAddress: getAddressForm
   };
+
+  window.timein.addEventListener(`input`, () => {
+    window.timeout.selectedIndex = window.timein.selectedIndex;
+  });
+
+  window.timeout.addEventListener(`input`, () => {
+    window.timein.selectedIndex = window.timeout.selectedIndex;
+  });
 
 })();

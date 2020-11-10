@@ -31,41 +31,32 @@
 
   const getPinsNearby = (elements) => {
     const pins = [];
+    // изменить цикл (макс 5 значений, сортировка по критериям)
     for (let i = 0; i < elements.length; i++) {
-      pins.push(elements[i]);
+      if (elements[i].offer) {
+        pins.push(elements[i]);
+      }
     }
     return pins;
   };
 
-  const sucsessHandler = (pins) => {
-    window.pinsData = pins
+  const renumberPins = () => {
+    const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`);
+    fragmentPins.forEach((pin, i) => {
+      pin.classList.add(`map__pin--${i}`);
+    });
+  };
+
+  const sucsessHandler = (pinsObjects) => {
+    window.pinsData = pinsObjects;
     window.shownPins = document.createDocumentFragment();
 
-    const currentPins = getPinsNearby(pins);
-    window.shownPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
-    const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`)
-    fragmentPins.forEach((pin, i) => {
-      pin.classList.add(`map__pin--${i}`)
-    });
+    window.currentPinsObjects = getPinsNearby(window.pinsData);
+    window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
 
+    renumberPins();
+  };
 
-    // window.renderPins = () => {
-
-
-
-
-
-
-
-
-
-      // window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
-      // window.mapPins.after(window.util.getFragment([currentPins[4]], window.renderPinPopup));
-      // window.renderPinPopup(currentPins[1]);
-    // };
-  }
-
-  window.loadData(sucsessHandler, errorHandler)
-  window.loadData(sucsessHandler, errorHandler)
+  window.loadData(sucsessHandler, errorHandler);
 
 })();
