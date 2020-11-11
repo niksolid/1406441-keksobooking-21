@@ -31,10 +31,12 @@
 
   const getPinsNearby = (elements) => {
     const pins = [];
-    // изменить цикл (макс 5 значений, сортировка по критериям)
     for (let i = 0; i < elements.length; i++) {
       if (elements[i].offer) {
         pins.push(elements[i]);
+        if (pins.length === 5) {
+          break;
+        }
       }
     }
     return pins;
@@ -47,14 +49,18 @@
     });
   };
 
+  window.renderPins = () => {
+    window.util.removePins()
+    window.shownPins = document.createDocumentFragment();
+    const pinsObjects = window.filteredPins(window.pinsData.slice());
+    window.currentPinsObjects = getPinsNearby(pinsObjects);
+    window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
+    renumberPins();
+  }
+
   const sucsessHandler = (pinsObjects) => {
     window.pinsData = pinsObjects;
-    window.shownPins = document.createDocumentFragment();
-
-    window.currentPinsObjects = getPinsNearby(window.pinsData);
-    window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
-
-    renumberPins();
+    renderPins();
   };
 
   window.loadData(sucsessHandler, errorHandler);

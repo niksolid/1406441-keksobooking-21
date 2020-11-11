@@ -89,7 +89,6 @@
     evt.preventDefault();
     if (evt.keyCode === window.evtButtons.keyEnter) {
       window.pageState(true);
-      // window.renderPins();
     }
   });
 
