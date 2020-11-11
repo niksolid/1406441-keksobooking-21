@@ -15,7 +15,7 @@
         }
       });
 
-      window.map.addEventListener(`keydown`, (evt) => {
+      document.addEventListener(`keydown`, (evt) => {
         if (evt.keyCode === window.evtButtons.keyEsc) {
           window.util.closePopup();
         }
