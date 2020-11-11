@@ -26,28 +26,37 @@
     pinElement.style = `top: ${pin.location.y - PIN_OFFSET_Y}px; left: ${pin.location.x - (PIN_OFFSET_X / 2)}px;`;
     pinImage.src = pin.author.avatar;
     pinImage.alt = pin.offer.title;
-
     return pinElement;
   };
 
   const getPinsNearby = (elements) => {
     const pins = [];
+    // изменить цикл (макс 5 значений, сортировка по критериям)
     for (let i = 0; i < elements.length; i++) {
-      pins.push(elements[i]);
+      if (elements[i].offer) {
+        pins.push(elements[i]);
+      }
     }
     return pins;
   };
 
-  const sucsessHandler = (pins) => {
-    window.pinsData = pins
-    window.renderPins = () => {
+  const renumberPins = () => {
+    const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`);
+    fragmentPins.forEach((pin, i) => {
+      pin.classList.add(`map__pin--${i}`);
+    });
+  };
 
-      const currentPins = getPinsNearby(pins);
-      window.mapPins.append(window.util.getFragment(currentPins, renderPlacesNearby));
-      // window.mapPins.after(window.util.getFragment(currentPins, window.renderPinPopup));
-    };
-  }
+  const sucsessHandler = (pinsObjects) => {
+    window.pinsData = pinsObjects;
+    window.shownPins = document.createDocumentFragment();
 
-  window.loadData(sucsessHandler, errorHandler)
+    window.currentPinsObjects = getPinsNearby(window.pinsData);
+    window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
+
+    renumberPins();
+  };
+
+  window.loadData(sucsessHandler, errorHandler);
 
 })();

@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const DATA_URL = `https://21.javascript.pages.academy/keksobooking/data`
+  const DATA_URL = `https://21.javascript.pages.academy/keksobooking/data`;
   const StatusCode = {
     OK: 200
   };

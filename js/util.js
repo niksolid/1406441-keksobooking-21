@@ -6,7 +6,6 @@
   window.mapPins = window.map.querySelector(`.map__pins`);
   window.pinMain = window.mapPins.querySelector(`.map__pin--main`);
 
-  // const mapWidth = window.mapPins.offsetWidth;
   const pinTemplate = document.querySelector(`#pin`).content;
   const cardTemplate = document.querySelector(`#card`).content;
 
@@ -36,9 +35,27 @@
   //   };
   // };
 
+
+  const utilPlacePins = () => {
+
+    const pins = window.shownPins.querySelectorAll(`.map__pin`);
+    pins.forEach((pin) => {
+      pin.classList.add(`map__pin--shown`);
+      window.mapPins.append(pin);
+    });
+  };
+
+  const utilRemovePins = () => {
+    window.util.closePopup();
+    const pins = window.mapPins.querySelectorAll(`.map__pin--shown`);
+    pins.forEach((pin) => {
+      pin.classList.remove(`map__pin--shown`);
+      window.shownPins.append(pin);
+    });
+  };
+
   const getUtilFragment = (pins, renderDOM) => {
     const fragment = document.createDocumentFragment();
-    //изменить цикл (макс 5 значений, сортировка по критериям)
     pins.forEach((pin) => {
       fragment.append(renderDOM(pin));
     });
@@ -54,15 +71,28 @@
     }
   };
 
+  const utilClosePopup = () => {
+    const mapCard = window.map.querySelector(`.map__card`);
+    if (mapCard) {
+      const activePin = window.mapPins.querySelector(`.map__pin--active`);
+      activePin.classList.remove(`map__pin--active`);
+      mapCard.remove();
+    }
+  };
+
   window.templates = {
     cardPopup: cardTemplate.querySelector(`.popup`),
     pinMapTemplate: pinTemplate.querySelector(`.map__pin`)
   };
+
   window.util = {
     // getRandomNumber: getUtilRandomNumber,
     // getRandomElementArray: getUtilRandomElementArray,
     // getRandomArray: getUtilRandomArray,
     // getRandomLocation: getUtilRandomLocation,
+    closePopup: utilClosePopup,
+    placePins: utilPlacePins,
+    removePins: utilRemovePins,
     getFragment: getUtilFragment,
     toggleState: utilToggleState
   };

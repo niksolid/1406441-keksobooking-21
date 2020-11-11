@@ -8,12 +8,13 @@
     if (isActive) {
       window.map.classList.remove(`map--faded`);
       window.adForm.classList.remove(`ad-form--disabled`);
+      window.formValid.getAddress(true);
     } else {
       window.map.classList.add(`map--faded`);
       window.adForm.classList.add(`ad-form--disabled`);
       window.formValid.getAddress(false);
-      // параметры для будущей функции возврата в исходное состояние
-      window.formValid.capacitySelection(window.roomNumber.value);
+      window.util.removePins();
+      // функции возврата формы в исходное состояние
     }
 
     for (let i = 0; i < adFormFieldsets.length; i++) {
@@ -24,4 +25,5 @@
       window.util.toggleState(mapFilters.children[i], isActive);
     }
   };
+
 })();
