@@ -5,35 +5,10 @@
   window.map = document.querySelector(`.map`);
   window.mapPins = window.map.querySelector(`.map__pins`);
   window.pinMain = window.mapPins.querySelector(`.map__pin--main`);
+  window.mapFilters = window.map.querySelector(`.map__filters`);
 
   const pinTemplate = document.querySelector(`#pin`).content;
   const cardTemplate = document.querySelector(`#card`).content;
-
-  // const getUtilRandomNumber = (min, max) => {
-  //   const rand = min - 0.5 + Math.random() * (max - min + 1);
-  //   return Math.round(rand);
-  // };
-
-  // const getUtilRandomElementArray = (array) => {
-  //   return array[Math.floor(array.length * Math.random())];
-  // };
-
-  // const getUtilRandomArray = (array) => {
-  //   const arrayCopy = array.slice();
-  //   const quantiyDeletedItem = window.util.getRandomNumber(0, array.length - 1);
-  //   for (let i = 0; i < quantiyDeletedItem; i++) {
-  //     const arrayCopyElement = window.util.getRandomElementArray(arrayCopy);
-  //     arrayCopy.splice(arrayCopy.indexOf(arrayCopyElement), 1);
-  //   }
-  //   return arrayCopy;
-  // };
-
-  // const getUtilRandomLocation = () => {
-  //   return {
-  //     x: window.util.getRandomNumber(0, mapWidth),
-  //     y: window.util.getRandomNumber(130, 630)
-  //   };
-  // };
 
 
   const utilPlacePins = () => {
@@ -86,10 +61,6 @@
   };
 
   window.util = {
-    // getRandomNumber: getUtilRandomNumber,
-    // getRandomElementArray: getUtilRandomElementArray,
-    // getRandomArray: getUtilRandomArray,
-    // getRandomLocation: getUtilRandomLocation,
     closePopup: utilClosePopup,
     placePins: utilPlacePins,
     removePins: utilRemovePins,
