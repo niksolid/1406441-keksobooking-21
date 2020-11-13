@@ -1,12 +1,9 @@
 'use strict';
 
 (() => {
-  // const TYPES_OF_HOUSING = [`place`, `flat`, `house`, `bungalow`];
-  // const CHECK_TIMES = [`12:00`, `13:00`, `14:00`];
-  // const FEATURES = [`wifi`, `dishwasher`, `parking`, `washer`, `elevator`, `conditioner`];
-  // const PHOTOS = [`http://o0.github.io/assets/images/tokyo/hotel1.jpg`, `http://o0.github.io/assets/images/tokyo/hotel2.jpg`, `http://o0.github.io/assets/images/tokyo/hotel3.jpg`];
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
+  const MAX_PINS_MAP = 5;
 
   const errorHandler = (errorMessage) => {
     const node = document.createElement(`div`);
@@ -34,7 +31,7 @@
     for (let i = 0; i < elements.length; i++) {
       if (elements[i].offer) {
         pins.push(elements[i]);
-        if (pins.length === 5) {
+        if (pins.length === MAX_PINS_MAP) {
           break;
         }
       }
@@ -50,17 +47,17 @@
   };
 
   window.renderPins = () => {
-    window.util.removePins()
+    window.util.removePins();
     window.shownPins = document.createDocumentFragment();
     const pinsObjects = window.filteredPins(window.pinsData.slice());
     window.currentPinsObjects = getPinsNearby(pinsObjects);
     window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
     renumberPins();
-  }
+  };
 
   const sucsessHandler = (pinsObjects) => {
     window.pinsData = pinsObjects;
-    renderPins();
+    window.renderPins();
   };
 
   window.loadData(sucsessHandler, errorHandler);
