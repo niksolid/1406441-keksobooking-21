@@ -3,6 +3,7 @@
 (() => {
   const PIN_MAIN_SIZE = 65;
   const PIN_MAIN_SIZE_TIP = 22;
+  const ONE_HUNDRED_ROOMS = 100;
 
   const addressInput = window.adForm.querySelector(`#address`);
   const capacity = window.adForm.querySelector(`#capacity`);
@@ -21,11 +22,11 @@
   };
 
   const transferCapacityItem = (item, roomValue) => {
-    if (+roomValue === 100 && +item.value !== 0) {
+    if (+roomValue === ONE_HUNDRED_ROOMS && +item.value !== 0) {
       capacityFragment.append(item);
     } else if (+item.value > +roomValue) {
       capacityFragment.append(item);
-    } else if (+item.value === 0 && +roomValue !== 100) {
+    } else if (+item.value === 0 && +roomValue !== ONE_HUNDRED_ROOMS) {
       capacityFragment.append(item);
     }
   };

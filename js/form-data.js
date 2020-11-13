@@ -9,4 +9,6 @@
   window.timein = window.adForm.querySelector(`#timein`);
   window.timeout = window.adForm.querySelector(`#timeout`);
 
+  // тут будет функция возврата в исходное состояние
+
 })();

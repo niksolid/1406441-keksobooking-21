@@ -14,7 +14,7 @@
       window.adForm.classList.add(`ad-form--disabled`);
       window.formValid.getAddress(false);
       window.util.removePins();
-      // функции возврата формы в исходное состояние
+      // вызов функции возврата формы в исходное состояние
     }
 
     for (let i = 0; i < adFormFieldsets.length; i++) {
