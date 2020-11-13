@@ -55,6 +55,15 @@
     }
   };
 
+    const DEBOUNCE_INTERVAL = 500;
+    let lastTimeout;
+  const utilDebounce = ((cb) => {
+      if (lastTimeout) {
+        window.clearTimeout(lastTimeout);
+      }
+      lastTimeout = window.setTimeout(cb, DEBOUNCE_INTERVAL);
+    });
+
   window.templates = {
     cardPopup: cardTemplate.querySelector(`.popup`),
     pinMapTemplate: pinTemplate.querySelector(`.map__pin`)
@@ -65,6 +74,7 @@
     placePins: utilPlacePins,
     removePins: utilRemovePins,
     getFragment: getUtilFragment,
-    toggleState: utilToggleState
+    toggleState: utilToggleState,
+    debounce: utilDebounce
   };
 })();
