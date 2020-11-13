@@ -1,10 +1,6 @@
 'use strict';
 
 (() => {
-  // const TYPES_OF_HOUSING = [`place`, `flat`, `house`, `bungalow`];
-  // const CHECK_TIMES = [`12:00`, `13:00`, `14:00`];
-  // const FEATURES = [`wifi`, `dishwasher`, `parking`, `washer`, `elevator`, `conditioner`];
-  // const PHOTOS = [`http://o0.github.io/assets/images/tokyo/hotel1.jpg`, `http://o0.github.io/assets/images/tokyo/hotel2.jpg`, `http://o0.github.io/assets/images/tokyo/hotel3.jpg`];
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
 
