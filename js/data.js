@@ -3,7 +3,7 @@
 (() => {
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
-  const MAX_PINS_MAP = 5
+  const MAX_PINS_MAP = 5;
 
   const errorHandler = (errorMessage) => {
     const node = document.createElement(`div`);
@@ -47,17 +47,17 @@
   };
 
   window.renderPins = () => {
-    window.util.removePins()
+    window.util.removePins();
     window.shownPins = document.createDocumentFragment();
     const pinsObjects = window.filteredPins(window.pinsData.slice());
     window.currentPinsObjects = getPinsNearby(pinsObjects);
     window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
     renumberPins();
-  }
+  };
 
   const sucsessHandler = (pinsObjects) => {
     window.pinsData = pinsObjects;
-    renderPins();
+    window.renderPins();
   };
 
   window.loadData(sucsessHandler, errorHandler);

@@ -55,14 +55,14 @@
     }
   };
 
-    const DEBOUNCE_INTERVAL = 500;
-    let lastTimeout;
+  const DEBOUNCE_INTERVAL = 500;
+  let lastTimeout;
   const utilDebounce = ((cb) => {
-      if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
-      }
-      lastTimeout = window.setTimeout(cb, DEBOUNCE_INTERVAL);
-    });
+    if (lastTimeout) {
+      window.clearTimeout(lastTimeout);
+    }
+    lastTimeout = window.setTimeout(cb, DEBOUNCE_INTERVAL);
+  });
 
   window.templates = {
     cardPopup: cardTemplate.querySelector(`.popup`),

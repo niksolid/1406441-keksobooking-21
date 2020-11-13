@@ -19,29 +19,30 @@
         (offerOption >= lowPrice && offerOption <= highPrice && domElement.value === `middle`) ||
         (offerOption >= highPrice && domElement.value === `high`))
     ) ? true : false;
-  }
+  };
 
   const featuresVerify = (domElements, offerOptions) => {
     const checkedElements = [];
     domElements.forEach((element) => {
       if (element.checked) {
-        checkedElements.push(element.value)
+        checkedElements.push(element.value);
       }
-    })
+    });
 
     if (checkedElements.length === 0) {
       return false;
     }
 
-    let isElementNotContain = false
+    let isElementNotContain = false;
     checkedElements.forEach((element) => {
       if (offerOptions.indexOf(element) === -1) {
-        return isElementNotContain = true;
+        isElementNotContain = true;
+        return;
       }
-    })
+    });
 
-    return (isElementNotContain)
-  }
+    return (isElementNotContain);
+  };
 
   const pinVerify = (pinsObjects, i) => {
 

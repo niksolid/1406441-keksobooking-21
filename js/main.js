@@ -10,4 +10,4 @@
     window.util.debounce(window.util.placePins);
   });
 
- })();
+})();
