@@ -8,7 +8,6 @@
   const housingFeatures = window.mapFilters.querySelectorAll(`.map__checkbox`);
   const lowPrice = 10000;
   const highPrice = 50000;
-  const featuresQuantity = 6;
 
   const standartVerify = (domElement, offerOption) => {
     return (domElement.value !== `any` && `${offerOption}` !== domElement.value) ? true : false;
@@ -30,44 +29,19 @@
       }
     })
 
-    console.log(checkedElements)
     if (checkedElements.length === 0) {
       return false;
     }
 
-    let isAss = false
-    let count = 0;
-    let ct = 0;
+    let isElementNotContain = false
     checkedElements.forEach((element) => {
-      // console.log('offerElement')
-      // console.log(element)ооо
-      if (offerOptions.indexOf(element) !== -1) {
-        return count++
-      } else {
-        // console.log('kill!')
-        return ct++
-      };
+      if (offerOptions.indexOf(element) === -1) {
+        return isElementNotContain = true;
+      }
     })
-    console.log(`count === ${count}`)
-    console.log(`ANTIcount === ${ct}`)
 
-    // return (count <= checkedElements.length)
-    return (ct === 0) ? false : true
-
-    // let isAss = false
-    // offerOptions.forEach((offerElement) => {
-    //   console.log('offerElement')
-    //   console.log(offerElement)
-    //   if (checkedElements.indexOf(offerElement)) {
-    //     return isAss = true
-    //   };
-    // })
-
-
-    // console.log('false')
-    // return isAss;d
+    return (isElementNotContain)
   }
-
 
   const pinVerify = (pinsObjects, i) => {
 
@@ -82,21 +56,15 @@
       standartVerify(housingRooms, offerRooms) ||
       standartVerify(housingGuests, offerGuests) ||
       featuresVerify(housingFeatures, offerFeatures)) {
-      // console.log(pinsObjects[i])
       pinsObjects.splice(i, 1);
     }
 
-    // if (housingFeatures[0].checked) {
-    // console.log(offerFeatures.length)
-    // }
   };
 
   window.filteredPins = (pinsObjects) => {
-    // console.log(pinsObjects)
     for (let i = pinsObjects.length - 1; i >= 0; i--) {
       pinVerify(pinsObjects, i);
     }
-    console.log('цикол все')
     return pinsObjects;
   };
 
