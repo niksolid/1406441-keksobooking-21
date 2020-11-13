@@ -3,6 +3,7 @@
 (() => {
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
+  const MAX_PINS_MAP = 5
 
   const errorHandler = (errorMessage) => {
     const node = document.createElement(`div`);
@@ -30,7 +31,7 @@
     for (let i = 0; i < elements.length; i++) {
       if (elements[i].offer) {
         pins.push(elements[i]);
-        if (pins.length === 5) {
+        if (pins.length === MAX_PINS_MAP) {
           break;
         }
       }
