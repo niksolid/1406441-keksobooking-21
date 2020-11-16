@@ -10,13 +10,13 @@
       popupClose.addEventListener(`click`, (evt) => {
         evt.preventDefault();
 
-        if (evt.button === window.evtButtons.mouseLeftBtn) {
+        if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
           window.util.closePopup();
         }
       });
 
       document.addEventListener(`keydown`, (evt) => {
-        if (evt.keyCode === window.evtButtons.keyEsc) {
+        if (evt.keyCode === window.evtButtons.KEY_ESC) {
           window.util.closePopup();
         }
       });
@@ -41,7 +41,7 @@
   window.mapPins.addEventListener(`click`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.mouseLeftBtn) {
+    if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
       const target = evt.target.closest(`.map__pin--shown`);
       openPopup(target);
     }

@@ -12,8 +12,13 @@
   const successTemplate = document.querySelector(`#success`).content;
   const errorTemplate = document.querySelector(`#error`).content;
 
-  const utilPlacePins = () => {
+  window.evtButtons = {
+    MOUSE_LEFT_BTN: 0,
+    KEY_ENTER: 13,
+    KEY_ESC: 27
+  };
 
+  const utilPlacePins = () => {
     const pins = window.shownPins.querySelectorAll(`.map__pin`);
     pins.forEach((pin) => {
       pin.classList.add(`map__pin--shown`);
@@ -57,17 +62,28 @@
   };
 
   const utilEventRemoveElement = (domElement) => {
-    domElement.addEventListener(`click`, (evt) => {
-      const target = evt.currentTarget;
-      if (target) {
-        domElement.remove();
+    const removeClickHandler = (evt) => {
+      evt.preventDefault();
+      if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
+        const target = evt.currentTarget;
+
+        if (target) {
+          domElement.remove();
+          domElement.removeEventListener(`click`, removeClickHandler);
+        }
       }
-    });
-    domElement.addEventListener(`keydown`, (evt) => {
-      if (evt.keyCode === window.evtButtons.keyEsc) {
+    };
+
+    const removeKeydownHandler = (evt) => {
+      evt.preventDefault();
+      if (evt.keyCode === window.evtButtons.KEY_ESC || evt.keyCode === window.evtButtons.KEY_ENTER) {
         domElement.remove();
-      };
-    });
+        document.removeEventListener(`keydown`, removeKeydownHandler);
+      }
+    };
+
+    domElement.addEventListener(`click`, removeClickHandler);
+    document.addEventListener(`keydown`, removeKeydownHandler);
   };
 
   const DEBOUNCE_INTERVAL = 500;
@@ -84,12 +100,6 @@
     pinMapTemplate: pinTemplate.querySelector(`.map__pin`),
     success: successTemplate.querySelector(`.success`),
     error: errorTemplate.querySelector(`.error`)
-  };
-
-  window.evtButtons = {
-    mouseLeftBtn: 0,
-    keyEnter: 13,
-    keyEsc: 27
   };
 
   window.util = {

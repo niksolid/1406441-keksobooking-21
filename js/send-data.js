@@ -1,4 +1,4 @@
-'use stict';
+'use strict';
 
 (() => {
   const SEND_URL = `https://21.javascript.pages.academy/keksobooking`;
@@ -26,18 +26,18 @@
     if (isSuccess) {
       window.pageState(false);
       window.page.append(window.templates.success);
+      window.templates.success.focus();
       window.util.eventRemoveElement(window.templates.success);
     } else {
       window.page.append(window.templates.error);
+      window.templates.success.focus();
       window.util.eventRemoveElement(window.templates.error);
-
-    };
-
+    }
   };
 
   const submitHandler = (evt) => {
-    sendData(new FormData(window.adForm), submitResult);
     evt.preventDefault();
+    sendData(new FormData(window.adForm), submitResult);
   };
 
   window.adForm.addEventListener(`submit`, submitHandler);

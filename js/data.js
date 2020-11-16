@@ -47,12 +47,14 @@
   };
 
   window.renderPins = () => {
-    window.util.removePins();
-    window.shownPins = document.createDocumentFragment();
-    const pinsObjects = window.filteredPins(window.pinsData.slice());
-    window.currentPinsObjects = getPinsNearby(pinsObjects);
-    window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
-    renumberPins();
+    if (window.pinsData) {
+      window.util.removePins();
+      window.shownPins = document.createDocumentFragment();
+      const pinsObjects = window.filteredPins(window.pinsData.slice());
+      window.currentPinsObjects = getPinsNearby(pinsObjects);
+      window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
+      renumberPins();
+    }
   };
 
   const sucsessHandler = (pinsObjects) => {
@@ -61,6 +63,5 @@
   };
 
   window.loadData(sucsessHandler, errorHandler);
-
 
 })();

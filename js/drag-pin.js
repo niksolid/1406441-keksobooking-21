@@ -11,7 +11,7 @@
   window.pinMain.addEventListener(`mousedown`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.mouseLeftBtn) {
+    if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
       window.pageState(true);
       window.util.removePins();
 
@@ -82,7 +82,7 @@
 
   window.pinMain.addEventListener(`keydown`, (evt) => {
     evt.preventDefault();
-    if (evt.keyCode === window.evtButtons.keyEnter) {
+    if (evt.keyCode === window.evtButtons.KEY_ENTER) {
       window.pageState(true);
     }
   });
