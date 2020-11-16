@@ -12,7 +12,7 @@
   const successTemplate = document.querySelector(`#success`).content;
   const errorTemplate = document.querySelector(`#error`).content;
 
-  window.evtButtons = {
+  window.evtButton = {
     MOUSE_LEFT_BTN: 0,
     KEY_ENTER: 13,
     KEY_ESC: 27
@@ -35,7 +35,7 @@
     });
   };
 
-  const getUtilFragment = (pins, renderDOM) => {
+  const utilGetFragment = (pins, renderDOM) => {
     const fragment = document.createDocumentFragment();
     pins.forEach((pin) => {
       fragment.append(renderDOM(pin));
@@ -64,7 +64,7 @@
   const utilEventRemoveElement = (domElement) => {
     const removeClickHandler = (evt) => {
       evt.preventDefault();
-      if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
+      if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
         const target = evt.currentTarget;
 
         if (target) {
@@ -76,7 +76,7 @@
 
     const removeKeydownHandler = (evt) => {
       evt.preventDefault();
-      if (evt.keyCode === window.evtButtons.KEY_ESC || evt.keyCode === window.evtButtons.KEY_ENTER) {
+      if (evt.keyCode === window.evtButton.KEY_ESC || evt.keyCode === window.evtButton.KEY_ENTER) {
         domElement.remove();
         document.removeEventListener(`keydown`, removeKeydownHandler);
       }
@@ -106,7 +106,7 @@
     closePopup: utilClosePopup,
     placePins: utilPlacePins,
     removePins: utilRemovePins,
-    getFragment: getUtilFragment,
+    getFragment: utilGetFragment,
     toggleState: utilToggleState,
     eventRemoveElement: utilEventRemoveElement,
     debounce: utilDebounce

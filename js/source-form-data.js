@@ -56,14 +56,12 @@
     window.formData.timeout.addEventListener(`input`, timeoutEvent);
   };
 
-
   const resetFilters = () => {
     filterSelects.forEach((select) => {
       select.value = `any`;
     });
 
   };
-
 
   window.returnPageForm = () => {
     window.formData.title.value = ``;

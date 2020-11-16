@@ -2,9 +2,6 @@
 
 (() => {
 
-
-
-
   const popupEvents = () => {
     const mapCard = window.map.querySelector(`.map__card`);
     if (mapCard) {
@@ -12,8 +9,8 @@
 
       const pinCloseHandler = (evt) => {
 
-        if (evt.button === window.evtButtons.MOUSE_LEFT_BTN ||
-          evt.keyCode === window.evtButtons.KEY_ESC) {
+        if (evt.button === window.evtButton.MOUSE_LEFT_BTN ||
+          evt.keyCode === window.evtButton.KEY_ESC) {
           window.util.closePopup();
           popupClose.removeEventListener(`click`, pinCloseHandler);
           popupClose.removeEventListener(`keydown`, pinCloseHandler);
@@ -21,7 +18,6 @@
       };
 
       popupClose.addEventListener(`click`, pinCloseHandler);
-
       document.addEventListener(`keydown`, pinCloseHandler);
     }
   };
@@ -44,7 +40,7 @@
   window.mapPins.addEventListener(`click`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
+    if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
       const target = evt.target.closest(`.map__pin--shown`);
       openPopup(target);
     }

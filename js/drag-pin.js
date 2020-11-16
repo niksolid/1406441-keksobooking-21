@@ -11,7 +11,7 @@
   window.pinMain.addEventListener(`mousedown`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
+    if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
       window.pageState(true);
       window.util.removePins();
 
@@ -23,7 +23,7 @@
 
       const onMouseMove = (moveEvt) => {
         moveEvt.preventDefault();
-        window.formValid.getAddress(true);
+        window.getAddress(true);
 
         dragged = true;
 
@@ -63,7 +63,7 @@
         document.removeEventListener(`mouseup`, onMouseUp);
 
         window.util.placePins();
-        window.formValid.getAddress(true);
+        window.getAddress(true);
 
         if (dragged) {
           const onClickPreventDefault = (clickEvt) => {
@@ -80,11 +80,13 @@
     }
   });
 
-  window.pinMain.addEventListener(`keydown`, (evt) => {
+  const onKeydown = (evt) => {
     evt.preventDefault();
-    if (evt.keyCode === window.evtButtons.KEY_ENTER) {
+    if (evt.keyCode === window.evtButton.KEY_ENTER) {
       window.pageState(true);
     }
-  });
+  };
+
+  window.pinMain.addEventListener(`keydown`, onKeydown);
 
 })();

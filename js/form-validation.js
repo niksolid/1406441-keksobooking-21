@@ -8,7 +8,7 @@
   const addressInput = window.adForm.querySelector(`#address`);
   const capacityFragment = document.createDocumentFragment();
 
-  const getAddressForm = (isActive) => {
+  window.getAddress = (isActive) => {
     let axisX = parseInt(window.pinMain.style.left, 10);
     let axisY = parseInt(window.pinMain.style.top, 10);
     axisX = Math.floor(axisX + PIN_MAIN_SIZE / 2);
@@ -65,10 +65,6 @@
         break;
     }
   });
-
-  window.formValid = {
-    getAddress: getAddressForm
-  };
 
   window.timeSynсForm();
 

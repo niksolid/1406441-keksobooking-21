@@ -21,7 +21,6 @@
     xhr.send(data);
   };
 
-
   const submitResult = (isSuccess) => {
     if (isSuccess) {
       window.pageState(false);

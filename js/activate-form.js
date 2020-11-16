@@ -25,7 +25,7 @@
     if (isActive) {
       window.map.classList.remove(`map--faded`);
       window.adForm.classList.remove(`ad-form--disabled`);
-      window.formValid.getAddress(true);
+      window.getAddress(true);
       window.mapFilters.addEventListener(`input`, mapFiltersHandler);
       formReset.addEventListener(`click`, pageResetHandler);
 
@@ -35,7 +35,7 @@
       window.adForm.classList.add(`ad-form--disabled`);
       window.util.removePins();
       window.returnPageForm();
-      window.formValid.getAddress(false);
+      window.getAddress(false);
       window.renderPins();
       window.mapFilters.removeEventListener(`input`, mapFiltersHandler);
       formReset.removeEventListener(`click`, pageResetHandler);
