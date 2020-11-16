@@ -5,18 +5,13 @@
   const maxHeight = 630;
   const mapWidth = window.map.offsetWidth;
   const minWidth = 0;
-  window.evtButtons = {
-    mouseLeftBtn: 0,
-    keyEnter: 13,
-    keyEsc: 27
-  };
 
   const pinMainShift = window.pinMain.offsetWidth / 2;
 
   window.pinMain.addEventListener(`mousedown`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.mouseLeftBtn) {
+    if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
       window.pageState(true);
       window.util.removePins();
 
@@ -28,7 +23,7 @@
 
       const onMouseMove = (moveEvt) => {
         moveEvt.preventDefault();
-        window.formValid.getAddress(true);
+        window.getAddress(true);
 
         dragged = true;
 
@@ -68,7 +63,7 @@
         document.removeEventListener(`mouseup`, onMouseUp);
 
         window.util.placePins();
-        window.formValid.getAddress(true);
+        window.getAddress(true);
 
         if (dragged) {
           const onClickPreventDefault = (clickEvt) => {
@@ -85,11 +80,13 @@
     }
   });
 
-  window.pinMain.addEventListener(`keydown`, (evt) => {
+  const onKeydown = (evt) => {
     evt.preventDefault();
-    if (evt.keyCode === window.evtButtons.keyEnter) {
+    if (evt.keyCode === window.evtButton.KEY_ENTER) {
       window.pageState(true);
     }
-  });
+  };
+
+  window.pinMain.addEventListener(`keydown`, onKeydown);
 
 })();

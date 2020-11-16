@@ -7,19 +7,18 @@
     if (mapCard) {
       const popupClose = mapCard.querySelector(`.popup__close`);
 
-      popupClose.addEventListener(`click`, (evt) => {
-        evt.preventDefault();
+      const pinCloseHandler = (evt) => {
 
-        if (evt.button === window.evtButtons.mouseLeftBtn) {
+        if (evt.button === window.evtButton.MOUSE_LEFT_BTN ||
+          evt.keyCode === window.evtButton.KEY_ESC) {
           window.util.closePopup();
+          popupClose.removeEventListener(`click`, pinCloseHandler);
+          popupClose.removeEventListener(`keydown`, pinCloseHandler);
         }
-      });
+      };
 
-      document.addEventListener(`keydown`, (evt) => {
-        if (evt.keyCode === window.evtButtons.keyEsc) {
-          window.util.closePopup();
-        }
-      });
+      popupClose.addEventListener(`click`, pinCloseHandler);
+      document.addEventListener(`keydown`, pinCloseHandler);
     }
   };
 
@@ -41,7 +40,7 @@
   window.mapPins.addEventListener(`click`, (evt) => {
     evt.preventDefault();
 
-    if (evt.button === window.evtButtons.mouseLeftBtn) {
+    if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
       const target = evt.target.closest(`.map__pin--shown`);
       openPopup(target);
     }
