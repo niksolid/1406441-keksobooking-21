@@ -2,24 +2,27 @@
 
 (() => {
 
+
+
+
   const popupEvents = () => {
     const mapCard = window.map.querySelector(`.map__card`);
     if (mapCard) {
       const popupClose = mapCard.querySelector(`.popup__close`);
 
-      popupClose.addEventListener(`click`, (evt) => {
-        evt.preventDefault();
+      const pinCloseHandler = (evt) => {
 
-        if (evt.button === window.evtButtons.MOUSE_LEFT_BTN) {
+        if (evt.button === window.evtButtons.MOUSE_LEFT_BTN ||
+          evt.keyCode === window.evtButtons.KEY_ESC) {
           window.util.closePopup();
+          popupClose.removeEventListener(`click`, pinCloseHandler);
+          popupClose.removeEventListener(`keydown`, pinCloseHandler);
         }
-      });
+      };
 
-      document.addEventListener(`keydown`, (evt) => {
-        if (evt.keyCode === window.evtButtons.KEY_ESC) {
-          window.util.closePopup();
-        }
-      });
+      popupClose.addEventListener(`click`, pinCloseHandler);
+
+      document.addEventListener(`keydown`, pinCloseHandler);
     }
   };
 
