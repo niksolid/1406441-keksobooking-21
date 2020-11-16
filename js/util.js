@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-
+  window.page = document.querySelector(`body`);
   window.map = document.querySelector(`.map`);
   window.mapPins = window.map.querySelector(`.map__pins`);
   window.pinMain = window.mapPins.querySelector(`.map__pin--main`);
@@ -9,7 +9,8 @@
 
   const pinTemplate = document.querySelector(`#pin`).content;
   const cardTemplate = document.querySelector(`#card`).content;
-
+  const successTemplate = document.querySelector(`#success`).content;
+  const errorTemplate = document.querySelector(`#error`).content;
 
   const utilPlacePins = () => {
 
@@ -55,6 +56,20 @@
     }
   };
 
+  const utilEventRemoveElement = (domElement) => {
+    domElement.addEventListener(`click`, (evt) => {
+      const target = evt.currentTarget;
+      if (target) {
+        domElement.remove();
+      }
+    });
+    domElement.addEventListener(`keydown`, (evt) => {
+      if (evt.keyCode === window.evtButtons.keyEsc) {
+        domElement.remove();
+      };
+    });
+  };
+
   const DEBOUNCE_INTERVAL = 500;
   let lastTimeout;
   const utilDebounce = ((cb) => {
@@ -66,7 +81,15 @@
 
   window.templates = {
     cardPopup: cardTemplate.querySelector(`.popup`),
-    pinMapTemplate: pinTemplate.querySelector(`.map__pin`)
+    pinMapTemplate: pinTemplate.querySelector(`.map__pin`),
+    success: successTemplate.querySelector(`.success`),
+    error: errorTemplate.querySelector(`.error`)
+  };
+
+  window.evtButtons = {
+    mouseLeftBtn: 0,
+    keyEnter: 13,
+    keyEsc: 27
   };
 
   window.util = {
@@ -75,6 +98,7 @@
     removePins: utilRemovePins,
     getFragment: getUtilFragment,
     toggleState: utilToggleState,
+    eventRemoveElement: utilEventRemoveElement,
     debounce: utilDebounce
   };
 })();

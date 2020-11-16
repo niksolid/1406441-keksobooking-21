@@ -5,11 +5,6 @@
   const maxHeight = 630;
   const mapWidth = window.map.offsetWidth;
   const minWidth = 0;
-  window.evtButtons = {
-    mouseLeftBtn: 0,
-    keyEnter: 13,
-    keyEsc: 27
-  };
 
   const pinMainShift = window.pinMain.offsetWidth / 2;
 

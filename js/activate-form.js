@@ -12,9 +12,9 @@
     } else {
       window.map.classList.add(`map--faded`);
       window.adForm.classList.add(`ad-form--disabled`);
-      window.formValid.getAddress(false);
       window.util.removePins();
-      // вызов функции возврата формы в исходное состояние
+      window.returnPageForm();
+      window.formValid.getAddress(false);
     }
 
     for (let i = 0; i < adFormFieldsets.length; i++) {

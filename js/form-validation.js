@@ -6,7 +6,6 @@
   const ONE_HUNDRED_ROOMS = 100;
 
   const addressInput = window.adForm.querySelector(`#address`);
-  const capacity = window.adForm.querySelector(`#capacity`);
   const capacityFragment = document.createDocumentFragment();
 
   const getAddressForm = (isActive) => {
@@ -31,26 +30,27 @@
     }
   };
 
-  const capacitySelection = (roomValue) => {
-    capacity.appendChild(capacityFragment);
-    const options = capacity.querySelectorAll(`option`);
+  window.capacitySelection = (roomValue) => {
+    window.capacity.appendChild(capacityFragment);
+    const options = window.capacity.querySelectorAll(`option`);
     options.forEach((item) => {
       transferCapacityItem(item, roomValue);
     });
   };
 
+
   const priceLimit = (minPrice) => {
-    window.price.min = minPrice;
-    window.price.placeholder = minPrice;
+    window.formData.price.min = minPrice;
+    window.formData.price.placeholder = minPrice;
   };
 
-  window.roomNumber.addEventListener(`input`, () => {
-    const value = window.roomNumber.value;
-    capacitySelection(value);
+  window.formData.roomNumber.addEventListener(`input`, () => {
+    const value = window.formData.roomNumber.value;
+    window.capacitySelection(value);
   });
 
-  window.type.addEventListener(`input`, () => {
-    switch (window.type.value) {
+  window.formData.type.addEventListener(`input`, () => {
+    switch (window.formData.type.value) {
       case `bungalow`:
         priceLimit(0);
         break;
@@ -70,12 +70,6 @@
     getAddress: getAddressForm
   };
 
-  window.timein.addEventListener(`input`, () => {
-    window.timeout.selectedIndex = window.timein.selectedIndex;
-  });
-
-  window.timeout.addEventListener(`input`, () => {
-    window.timein.selectedIndex = window.timeout.selectedIndex;
-  });
+  window.timeSynсForm();
 
 })();
