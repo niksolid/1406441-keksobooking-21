@@ -33,7 +33,7 @@
       house: `Дом`,
       palace: `Дворец`
     }
-  }
+  };
 
   const utilPlacePins = () => {
     const pins = window.shownPins.querySelectorAll(`.map__pin`);

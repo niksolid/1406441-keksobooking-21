@@ -37,7 +37,7 @@
       window.map.classList.add(`map--faded`);
       window.adForm.classList.add(`ad-form--disabled`);
       window.returnPageForm();
-      window.renderPins()
+      window.renderPins();
       window.util.removePins();
       window.getAddress(false);
       window.mapFilters.removeEventListener(`input`, mapFiltersHandler);
@@ -48,8 +48,8 @@
       window.util.toggleState(adFormFieldsets[i], isActive);
     }
 
-    for (let i = 0; i < mapFilters.children.length; i++) {
-      window.util.toggleState(mapFilters.children[i], isActive);
+    for (let i = 0; i < window.mapFilters.children.length; i++) {
+      window.util.toggleState(window.mapFilters.children[i], isActive);
     }
   };
 

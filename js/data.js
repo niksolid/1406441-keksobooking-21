@@ -28,7 +28,7 @@
   const renumberPins = () => {
     const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`);
     fragmentPins.forEach((pin, i) => {
-      pin.setAttribute(`map-displayed`, i)
+      pin.setAttribute(`map-displayed`, i);
     });
   };
 

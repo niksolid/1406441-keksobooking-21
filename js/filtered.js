@@ -73,9 +73,9 @@
   window.filteredPins = (pinsObjects) => {
     for (let i = pinsObjects.length - 1; i >= 0; i--) {
       pinVerify(pinsObjects, i);
-    };
+    }
 
-    pinsObjects.splice(MAX_PINS)
+    pinsObjects.splice(MAX_PINS);
 
     return pinsObjects;
   };

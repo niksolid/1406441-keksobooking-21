@@ -13,7 +13,7 @@
     flat: 1000,
     house: 5000,
     palace: 10000
-  }
+  };
 
   window.getAddress = (isActive) => {
     let axisX = parseInt(window.pinMain.style.left, 10);
@@ -45,10 +45,9 @@
     });
   };
 
-
-  const priceLimit = (minPrice) => {
-    window.formData.price.min = minPrice;
-    window.formData.price.placeholder = minPrice;
+  const priceLimit = (price) => {
+    window.formData.price.min = price;
+    window.formData.price.placeholder = price;
   };
 
   window.formData.roomNumber.addEventListener(`input`, () => {
