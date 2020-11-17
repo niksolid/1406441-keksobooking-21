@@ -26,12 +26,9 @@
     const targets = window.mapPins.querySelectorAll(`.map__pin--shown`);
     if (target) {
       window.util.closePopup();
-      for (let i = 0; i < targets.length; i++) {
-        if (target.classList.contains(`map__pin--${i}`)) {
-          targets[i].classList.add(`map__pin--active`);
-          window.mapPins.after(window.util.getFragment([window.currentPinsObjects[i]], window.renderPinPopup));
-        }
-      }
+      const targetNum = +target.getAttribute(`map-displayed`);
+      targets[targetNum].classList.add(`map__pin--active`);
+      window.mapPins.after(window.util.getFragment([window.currentPinsObjects[targetNum]], window.renderPinPopup));
     }
 
     popupEvents();

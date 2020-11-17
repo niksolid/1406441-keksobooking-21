@@ -67,11 +67,11 @@
         window.getAddress(true);
 
         if (dragged) {
-          const onClickPreventDefault = (clickEvt) => {
+          const onClickPreventDefaultHandler = (clickEvt) => {
             clickEvt.preventDefault();
-            window.pinMain.removeEventListener(`click`, onClickPreventDefault);
+            window.pinMain.removeEventListener(`click`, onClickPreventDefaultHandler);
           };
-          window.pinMain.addEventListener(`click`, onClickPreventDefault);
+          window.pinMain.addEventListener(`click`, onClickPreventDefaultHandler);
         }
       };
 
