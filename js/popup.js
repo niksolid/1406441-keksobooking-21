@@ -40,17 +40,17 @@
     popupAddress.textContent = pin.offer.address;
     popupPrice.textContent = `${pin.offer.price}₽/ночь`;
     switch (pin.offer.type) {
-      case `flat`:
-        popupType.textContent = `Квартира`;
+      case window.pinType.value.flat:
+        popupType.textContent = window.pinType.content.flat;
         break;
-      case `bungalow`:
-        popupType.textContent = `Бунгало`;
+      case window.pinType.value.bungalow:
+        popupType.textContent = window.pinType.content.bungalow;
         break;
-      case `house`:
-        popupType.textContent = `Дом`;
+      case window.pinType.value.house:
+        popupType.textContent = window.pinType.content.house;
         break;
-      case `place`:
-        popupType.textContent = `Дворец`;
+      case window.pinType.value.palace:
+        popupType.textContent = window.pinType.content.palace;
         break;
     }
     popupCapacity.textContent = `${pin.offer.rooms} комнаты для ${pin.offer.guests} гостей`;

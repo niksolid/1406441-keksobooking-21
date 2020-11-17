@@ -10,15 +10,22 @@
   const HIGH_PRICE = 50000;
   const MAX_PINS = 5;
 
+  const FilteredValue = {
+    ANY: `any`,
+    LOW: `low`,
+    MIDDLE: `middle`,
+    HIGH: `high`
+  };
+
   const standartVerify = (domElement, offerOption) => {
-    return (domElement.value !== `any` && `${offerOption}` !== domElement.value) ? true : false;
+    return (domElement.value !== FilteredValue.ANY && `${offerOption}` !== domElement.value) ? true : false;
   };
 
   const priceVerify = (domElement, offerOption) => {
-    return ((domElement.value !== `any`) &&
-      !((offerOption <= LOW_PRICE && domElement.value === `low`) ||
-        (offerOption >= LOW_PRICE && offerOption <= HIGH_PRICE && domElement.value === `middle`) ||
-        (offerOption >= HIGH_PRICE && domElement.value === `high`))
+    return ((domElement.value !== FilteredValue.ANY) &&
+      !((offerOption <= LOW_PRICE && domElement.value === FilteredValue.LOW) ||
+        (offerOption >= LOW_PRICE && offerOption <= HIGH_PRICE && domElement.value === FilteredValue.MIDDLE) ||
+        (offerOption >= HIGH_PRICE && domElement.value === FilteredValue.HIGH))
     ) ? true : false;
   };
 

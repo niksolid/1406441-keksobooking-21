@@ -20,6 +20,21 @@
     KEY_ESC: 27
   };
 
+  window.pinType = {
+    value: {
+      flat: `flat`,
+      bungalow: `bungalow`,
+      house: `house`,
+      palace: `palace`
+    },
+    content: {
+      flat: `Квартира`,
+      bungalow: `Бунгало`,
+      house: `Дом`,
+      palace: `Дворец`
+    }
+  }
+
   const utilPlacePins = () => {
     const pins = window.shownPins.querySelectorAll(`.map__pin`);
     pins.forEach((pin) => {

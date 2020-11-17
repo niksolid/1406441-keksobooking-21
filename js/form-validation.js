@@ -8,6 +8,13 @@
   const addressInput = window.adForm.querySelector(`#address`);
   const capacityFragment = document.createDocumentFragment();
 
+  const minPrice = {
+    bungalow: 0,
+    flat: 1000,
+    house: 5000,
+    palace: 10000
+  }
+
   window.getAddress = (isActive) => {
     let axisX = parseInt(window.pinMain.style.left, 10);
     let axisY = parseInt(window.pinMain.style.top, 10);
@@ -51,17 +58,17 @@
 
   window.formData.type.addEventListener(`input`, () => {
     switch (window.formData.type.value) {
-      case `bungalow`:
-        priceLimit(0);
+      case window.pinType.value.bungalow:
+        priceLimit(minPrice.bungalow);
         break;
-      case `flat`:
-        priceLimit(1000);
+      case window.pinType.value.flat:
+        priceLimit(minPrice.flat);
         break;
-      case `house`:
-        priceLimit(5000);
+      case window.pinType.value.house:
+        priceLimit(minPrice.house);
         break;
-      case `palace`:
-        priceLimit(10000);
+      case window.pinType.value.palace:
+        priceLimit(minPrice.palace);
         break;
     }
   });
