@@ -6,8 +6,9 @@
   const housingRooms = window.mapFilters.querySelector(`#housing-rooms`);
   const housingGuests = window.mapFilters.querySelector(`#housing-guests`);
   const housingFeatures = window.mapFilters.querySelectorAll(`.map__checkbox`);
-  const lowPrice = 10000;
-  const highPrice = 50000;
+  const LOW_PRICE = 10000;
+  const HIGH_PRICE = 50000;
+  const MAX_PINS = 5;
 
   const standartVerify = (domElement, offerOption) => {
     return (domElement.value !== `any` && `${offerOption}` !== domElement.value) ? true : false;
@@ -15,9 +16,9 @@
 
   const priceVerify = (domElement, offerOption) => {
     return ((domElement.value !== `any`) &&
-      !((offerOption <= lowPrice && domElement.value === `low`) ||
-        (offerOption >= lowPrice && offerOption <= highPrice && domElement.value === `middle`) ||
-        (offerOption >= highPrice && domElement.value === `high`))
+      !((offerOption <= LOW_PRICE && domElement.value === `low`) ||
+        (offerOption >= LOW_PRICE && offerOption <= HIGH_PRICE && domElement.value === `middle`) ||
+        (offerOption >= HIGH_PRICE && domElement.value === `high`))
     ) ? true : false;
   };
 
@@ -65,7 +66,10 @@
   window.filteredPins = (pinsObjects) => {
     for (let i = pinsObjects.length - 1; i >= 0; i--) {
       pinVerify(pinsObjects, i);
-    }
+    };
+
+    pinsObjects.splice(MAX_PINS)
+
     return pinsObjects;
   };
 

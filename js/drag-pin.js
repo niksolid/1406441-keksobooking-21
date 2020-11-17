@@ -9,9 +9,10 @@
   const pinMainShift = window.pinMain.offsetWidth / 2;
 
   window.pinMain.addEventListener(`mousedown`, (evt) => {
-    evt.preventDefault();
-
     if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
+
+      evt.preventDefault();
+
       window.pageState(true);
       window.util.removePins();
 
@@ -62,7 +63,7 @@
         document.removeEventListener(`mousemove`, onMouseMove);
         document.removeEventListener(`mouseup`, onMouseUp);
 
-        window.util.placePins();
+        window.util.debounce(window.util.placePins);
         window.getAddress(true);
 
         if (dragged) {
@@ -81,8 +82,8 @@
   });
 
   const onKeydown = (evt) => {
-    evt.preventDefault();
     if (evt.keyCode === window.evtButton.KEY_ENTER) {
+      evt.preventDefault();
       window.pageState(true);
     }
   };

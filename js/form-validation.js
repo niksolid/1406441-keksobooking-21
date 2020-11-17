@@ -2,7 +2,7 @@
 
 (() => {
   const PIN_MAIN_SIZE = 65;
-  const PIN_MAIN_SIZE_TIP = 22;
+  const PIN_MAIN_SIZE_TIP = 19;
   const ONE_HUNDRED_ROOMS = 100;
 
   const addressInput = window.adForm.querySelector(`#address`);
@@ -11,7 +11,7 @@
   window.getAddress = (isActive) => {
     let axisX = parseInt(window.pinMain.style.left, 10);
     let axisY = parseInt(window.pinMain.style.top, 10);
-    axisX = Math.floor(axisX + PIN_MAIN_SIZE / 2);
+    axisX = Math.round(axisX + PIN_MAIN_SIZE / 2);
     if (isActive) {
       axisY = Math.floor(axisY + (PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP));
     } else {

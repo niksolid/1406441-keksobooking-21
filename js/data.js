@@ -3,7 +3,6 @@
 (() => {
   const PIN_OFFSET_X = 50;
   const PIN_OFFSET_Y = 70;
-  const MAX_PINS_MAP = 5;
 
   const errorHandler = (errorMessage) => {
     const node = document.createElement(`div`);
@@ -26,19 +25,6 @@
     return pinElement;
   };
 
-  const getPinsNearby = (elements) => {
-    const pins = [];
-    for (let i = 0; i < elements.length; i++) {
-      if (elements[i].offer) {
-        pins.push(elements[i]);
-        if (pins.length === MAX_PINS_MAP) {
-          break;
-        }
-      }
-    }
-    return pins;
-  };
-
   const renumberPins = () => {
     const fragmentPins = window.shownPins.querySelectorAll(`.map__pin`);
     fragmentPins.forEach((pin, i) => {
@@ -50,8 +36,7 @@
     if (window.pinsData) {
       window.util.removePins();
       window.shownPins = document.createDocumentFragment();
-      const pinsObjects = window.filteredPins(window.pinsData.slice());
-      window.currentPinsObjects = getPinsNearby(pinsObjects);
+      window.currentPinsObjects = window.filteredPins(window.pinsData.slice());
       window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
       renumberPins();
     }

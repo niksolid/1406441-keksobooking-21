@@ -1,6 +1,8 @@
 'use strict';
 
 (() => {
+  const DEBOUNCE_INTERVAL = 500;
+
   window.page = document.querySelector(`body`);
   window.map = document.querySelector(`.map`);
   window.mapPins = window.map.querySelector(`.map__pins`);
@@ -63,10 +65,9 @@
 
   const utilEventRemoveElement = (domElement) => {
     const removeClickHandler = (evt) => {
-      evt.preventDefault();
       if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
+        evt.preventDefault();
         const target = evt.currentTarget;
-
         if (target) {
           domElement.remove();
           domElement.removeEventListener(`click`, removeClickHandler);
@@ -75,8 +76,8 @@
     };
 
     const removeKeydownHandler = (evt) => {
-      evt.preventDefault();
       if (evt.keyCode === window.evtButton.KEY_ESC || evt.keyCode === window.evtButton.KEY_ENTER) {
+        evt.preventDefault();
         domElement.remove();
         document.removeEventListener(`keydown`, removeKeydownHandler);
       }
@@ -86,7 +87,6 @@
     document.addEventListener(`keydown`, removeKeydownHandler);
   };
 
-  const DEBOUNCE_INTERVAL = 500;
   let lastTimeout;
   const utilDebounce = ((cb) => {
     if (lastTimeout) {

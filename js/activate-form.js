@@ -2,15 +2,18 @@
 
 (() => {
   const adFormFieldsets = window.adForm.querySelectorAll(`fieldset`);
-  const mapFilters = window.map.querySelector(`.map__filters`);
   const formReset = window.adForm.querySelector(`.ad-form__reset`);
+
+  const replacePins = () => {
+    window.util.closePopup();
+    window.renderPins();
+    window.util.placePins();
+  };
 
   const mapFiltersHandler = (evt) => {
     evt.preventDefault();
 
-    window.util.closePopup();
-    window.renderPins();
-    window.util.debounce(window.util.placePins);
+    window.util.debounce(replacePins);
   };
 
   const pageResetHandler = (evt) => {
@@ -33,10 +36,10 @@
 
       window.map.classList.add(`map--faded`);
       window.adForm.classList.add(`ad-form--disabled`);
-      window.util.removePins();
       window.returnPageForm();
+      window.renderPins()
+      window.util.removePins();
       window.getAddress(false);
-      window.renderPins();
       window.mapFilters.removeEventListener(`input`, mapFiltersHandler);
       formReset.removeEventListener(`click`, pageResetHandler);
     }

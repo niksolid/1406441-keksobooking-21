@@ -38,9 +38,8 @@
   };
 
   window.mapPins.addEventListener(`click`, (evt) => {
-    evt.preventDefault();
-
     if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
+      evt.preventDefault();
       const target = evt.target.closest(`.map__pin--shown`);
       openPopup(target);
     }
