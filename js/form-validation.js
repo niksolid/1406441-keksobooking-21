@@ -8,6 +8,8 @@
   const addressInput = window.adForm.querySelector(`#address`);
   const capacityFragment = document.createDocumentFragment();
 
+  window.PIN_MAIN_HEIGHT = PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP
+
   const minPrice = {
     bungalow: 0,
     flat: 1000,
@@ -20,7 +22,7 @@
     let axisY = parseInt(window.pinMain.style.top, 10);
     axisX = Math.round(axisX + PIN_MAIN_SIZE / 2);
     if (isActive) {
-      axisY = Math.floor(axisY + (PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP));
+      axisY = Math.floor(axisY + (window.PIN_MAIN_HEIGHT));
     } else {
       axisY = Math.floor(axisY + (PIN_MAIN_SIZE / 2));
     }

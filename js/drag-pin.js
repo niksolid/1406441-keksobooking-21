@@ -1,8 +1,8 @@
 'use strict';
 
 (() => {
-  const minHeight = 130;
-  const maxHeight = 630;
+  const minHeight = 130 - window.PIN_MAIN_HEIGHT;
+  const maxHeight = 630 - window.PIN_MAIN_HEIGHT;
   const mapWidth = window.map.offsetWidth;
   const minWidth = 0;
 
