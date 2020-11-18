@@ -16,12 +16,13 @@
   };
 
   const renderPlacesNearby = (pin) => {
+    const { location, author, offer } = pin;
     const pinElement = window.templates.pinMapTemplate.cloneNode(true);
     const pinImage = pinElement.querySelector(`img`);
-    pinElement.style.top = pin.location.x;
-    pinElement.style = `top: ${pin.location.y - PIN_OFFSET_Y}px; left: ${pin.location.x - (PIN_OFFSET_X / 2)}px;`;
-    pinImage.src = pin.author.avatar;
-    pinImage.alt = pin.offer.title;
+    pinElement.style.top = location.x;
+    pinElement.style = `top: ${location.y - PIN_OFFSET_Y}px; left: ${location.x - (PIN_OFFSET_X / 2)}px;`;
+    pinImage.src = author.avatar;
+    pinImage.alt = offer.title;
     return pinElement;
   };
 
