@@ -5,7 +5,6 @@
   const popupEvents = () => {
     const mapCard = window.map.querySelector(`.map__card`);
     if (mapCard) {
-      // console.log(mapCard)
       const popupClose = mapCard.querySelector(`.popup__close`);
 
       window.pinCloseHandler = (evt) => {
@@ -50,5 +49,3 @@
   window.mapPins.addEventListener(`click`, popupClickHandler)
 
 })();
-//
-// target.removeEventListener(`click`, popupClickHandler)
