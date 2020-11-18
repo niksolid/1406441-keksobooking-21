@@ -70,7 +70,7 @@
 
   };
 
-  window.filteredPins = (pinsObjects) => {
+  const filteredPins = (pinsObjects) => {
     for (let i = pinsObjects.length - 1; i >= 0; i--) {
       pinVerify(pinsObjects, i);
     }
@@ -79,5 +79,9 @@
 
     return pinsObjects;
   };
+
+  window.filtered = {
+    filteredPins: filteredPins
+  }
 
 })();

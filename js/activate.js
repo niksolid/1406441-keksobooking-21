@@ -6,7 +6,7 @@
 
   const replacePins = () => {
     window.util.closePopup();
-    window.renderPins();
+    window.data.renderPins();
     window.util.placePins();
   };
 
@@ -20,7 +20,7 @@
     evt.preventDefault();
 
     window.util.closePopup();
-    window.renderPins();
+    window.data.renderPins();
     pageState(false);
   };
 
@@ -28,7 +28,7 @@
     if (isActive) {
       window.map.classList.remove(`map--faded`);
       window.adForm.classList.remove(`ad-form--disabled`);
-      window.getAddress(true);
+      window.validation.getAddress(true);
       window.mapFilters.addEventListener(`input`, mapFiltersHandler);
       formReset.addEventListener(`click`, pageResetHandler);
 
@@ -37,9 +37,9 @@
       window.map.classList.add(`map--faded`);
       window.adForm.classList.add(`ad-form--disabled`);
       window.returnPageForm();
-      window.renderPins();
+      window.data.renderPins();
       window.util.removePins();
-      window.getAddress(false);
+      window.validation.getAddress(false);
       window.mapFilters.removeEventListener(`input`, mapFiltersHandler);
       formReset.removeEventListener(`click`, pageResetHandler);
     }

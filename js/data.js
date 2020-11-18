@@ -33,21 +33,25 @@
     });
   };
 
-  window.renderPins = () => {
-    if (window.pinsData) {
+  const renderPins = () => {
+    if (window.data.pinsData) {
       window.util.removePins();
       window.shownPins = document.createDocumentFragment();
-      window.currentPinsObjects = window.filteredPins(window.pinsData.slice());
+      window.currentPinsObjects = window.filtered.filteredPins(window.data.pinsData.slice());
       window.shownPins.append(window.util.getFragment(window.currentPinsObjects, renderPlacesNearby));
       renumberPins();
     }
   };
 
   const sucsessHandler = (pinsObjects) => {
-    window.pinsData = pinsObjects;
-    window.renderPins();
+    window.data.pinsData = pinsObjects;
+    renderPins();
   };
 
-  window.loadData(sucsessHandler, errorHandler);
+  window.loadData.loadDataExport(sucsessHandler, errorHandler);
+
+  window.data = {
+    renderPins: renderPins
+  }
 
 })();

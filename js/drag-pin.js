@@ -1,8 +1,8 @@
 'use strict';
 
 (() => {
-  const minHeight = 130 - window.PIN_MAIN_HEIGHT;
-  const maxHeight = 630 - window.PIN_MAIN_HEIGHT;
+  const minHeight = 130 - window.validation.PIN_MAIN_HEIGHT;
+  const maxHeight = 630 - window.validation.PIN_MAIN_HEIGHT;
   const mapWidth = window.map.offsetWidth;
   const minWidth = 0;
 
@@ -24,7 +24,7 @@
 
       const mouseMoveHandler = (moveEvt) => {
         moveEvt.preventDefault();
-        window.getAddress(true);
+        window.validation.getAddress(true);
 
         dragged = true;
 
@@ -64,7 +64,7 @@
         document.removeEventListener(`mouseup`, mouseUpHandler);
 
         window.util.debounce(window.util.placePins);
-        window.getAddress(true);
+        window.validation.getAddress(true);
 
         if (dragged) {
           const preventDefaultClickHandler = (clickEvt) => {
@@ -77,7 +77,6 @@
 
       document.addEventListener(`mousemove`, mouseMoveHandler);
       document.addEventListener(`mouseup`, mouseUpHandler);
-
     }
   });
 

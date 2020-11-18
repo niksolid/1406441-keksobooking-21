@@ -7,7 +7,7 @@
     OK: 200
   };
 
-  window.loadData = (onLoad, onError) => {
+  const loadData = (onLoad, onError) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = `json`;
     xhr.addEventListener(`load`, () => {
@@ -29,5 +29,9 @@
     xhr.open(`GET`, DATA_URL);
     xhr.send();
   };
+
+  window.loadData = {
+    loadDataExport: loadData
+  }
 
 })();
