@@ -34,11 +34,11 @@
     }
   };
 
-  const submitHandler = (evt) => {
+  const formSubmitHandler = (evt) => {
     evt.preventDefault();
     sendData(new FormData(window.adForm), submitResult);
   };
 
-  window.adForm.addEventListener(`submit`, submitHandler);
+  window.adForm.addEventListener(`submit`, formSubmitHandler);
 
 })();

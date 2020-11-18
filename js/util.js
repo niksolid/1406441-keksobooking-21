@@ -75,31 +75,34 @@
       const activePin = window.mapPins.querySelector(`.map__pin--active`);
       activePin.classList.remove(`map__pin--active`);
       mapCard.remove();
+      document.removeEventListener(`keydown`, window.pinCloseHandler);
     }
   };
 
   const utilEventRemoveElement = (domElement) => {
-    const removeClickHandler = (evt) => {
+    const clickRemoveHandler = (evt) => {
       if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
         evt.preventDefault();
         const target = evt.currentTarget;
         if (target) {
           domElement.remove();
-          domElement.removeEventListener(`click`, removeClickHandler);
+          domElement.removeEventListener(`click`, clickRemoveHandler);
+          document.removeEventListener(`keydown`, keydownRemoveHandler);
         }
       }
     };
 
-    const removeKeydownHandler = (evt) => {
+    const keydownRemoveHandler = (evt) => {
       if (evt.keyCode === window.evtButton.KEY_ESC || evt.keyCode === window.evtButton.KEY_ENTER) {
         evt.preventDefault();
         domElement.remove();
-        document.removeEventListener(`keydown`, removeKeydownHandler);
+        domElement.addEventListener(`click`, clickRemoveHandler);
+        document.removeEventListener(`keydown`, keydownRemoveHandler);
       }
     };
 
-    domElement.addEventListener(`click`, removeClickHandler);
-    document.addEventListener(`keydown`, removeKeydownHandler);
+    domElement.addEventListener(`click`, clickRemoveHandler);
+    document.addEventListener(`keydown`, keydownRemoveHandler);
   };
 
   let lastTimeout;

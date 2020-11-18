@@ -22,7 +22,7 @@
       };
       let dragged = false;
 
-      const onMouseMove = (moveEvt) => {
+      const mouseMoveHandler = (moveEvt) => {
         moveEvt.preventDefault();
         window.getAddress(true);
 
@@ -57,37 +57,37 @@
         window.pinMain.style.left = dragX + `px`;
       };
 
-      const onMouseUp = (upEvt) => {
+      const mouseUpHandler = (upEvt) => {
         upEvt.preventDefault();
 
-        document.removeEventListener(`mousemove`, onMouseMove);
-        document.removeEventListener(`mouseup`, onMouseUp);
+        document.removeEventListener(`mousemove`, mouseMoveHandler);
+        document.removeEventListener(`mouseup`, mouseUpHandler);
 
         window.util.debounce(window.util.placePins);
         window.getAddress(true);
 
         if (dragged) {
-          const onClickPreventDefaultHandler = (clickEvt) => {
+          const preventDefaultClickHandler = (clickEvt) => {
             clickEvt.preventDefault();
-            window.pinMain.removeEventListener(`click`, onClickPreventDefaultHandler);
+            window.pinMain.removeEventListener(`click`, preventDefaultClickHandler);
           };
-          window.pinMain.addEventListener(`click`, onClickPreventDefaultHandler);
+          window.pinMain.addEventListener(`click`, preventDefaultClickHandler);
         }
       };
 
-      document.addEventListener(`mousemove`, onMouseMove);
-      document.addEventListener(`mouseup`, onMouseUp);
+      document.addEventListener(`mousemove`, mouseMoveHandler);
+      document.addEventListener(`mouseup`, mouseUpHandler);
 
     }
   });
 
-  const onKeydown = (evt) => {
+  const keyDownHandler = (evt) => {
     if (evt.keyCode === window.evtButton.KEY_ENTER) {
       evt.preventDefault();
       window.pageState(true);
     }
   };
 
-  window.pinMain.addEventListener(`keydown`, onKeydown);
+  window.pinMain.addEventListener(`keydown`, keyDownHandler);
 
 })();

@@ -38,22 +38,22 @@
     });
   };
 
-  const timeinEvent = () => {
+  const timeinInputHandler = () => {
     window.formData.timeout.selectedIndex = window.formData.timein.selectedIndex;
   };
-  const timeoutEvent = () => {
+  const timeoutInputHandler = () => {
     window.formData.timein.selectedIndex = window.formData.timeout.selectedIndex;
   };
 
   window.timeSynсForm = () => {
-    window.formData.timein.removeEventListener(`input`, timeinEvent);
-    window.formData.timein.removeEventListener(`input`, timeoutEvent);
+    window.formData.timein.removeEventListener(`input`, timeinInputHandler);
+    window.formData.timein.removeEventListener(`input`, timeoutInputHandler);
 
     window.formData.timein.selectedIndex = sourcePageState.timein;
     window.formData.timeout.selectedIndex = sourcePageState.timeout;
 
-    window.formData.timein.addEventListener(`input`, timeinEvent);
-    window.formData.timeout.addEventListener(`input`, timeoutEvent);
+    window.formData.timein.addEventListener(`input`, timeinInputHandler);
+    window.formData.timeout.addEventListener(`input`, timeoutInputHandler);
   };
 
   const resetFilters = () => {
