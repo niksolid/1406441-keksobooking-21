@@ -23,7 +23,7 @@
 
   const submitResult = (isSuccess) => {
     if (isSuccess) {
-      window.pageState(false);
+      window.activate.pageState(false);
       window.page.append(window.templates.success);
       window.templates.success.focus();
       window.util.eventRemoveElement(window.templates.success);

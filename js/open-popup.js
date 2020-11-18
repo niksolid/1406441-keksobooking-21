@@ -25,7 +25,6 @@
   const openPopup = (target) => {
     const targets = window.mapPins.querySelectorAll(`.map__pin--shown`);
     if (target) {
-      console.log(target)
       window.util.closePopup();
       const targetNum = +target.getAttribute(`map-displayed`);
       targets[targetNum].classList.add(`map__pin--active`);
@@ -41,7 +40,6 @@
     if (evt.button === window.evtButton.MOUSE_LEFT_BTN) {
       evt.preventDefault();
       const target = evt.target.closest(`.map__pin--shown`);
-      console.log.target
       openPopup(target);
     }
   };

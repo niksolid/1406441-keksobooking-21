@@ -13,7 +13,7 @@
 
       evt.preventDefault();
 
-      window.pageState(true);
+      window.activate.pageState(true);
       window.util.removePins();
 
       let startCoords = {
@@ -84,7 +84,7 @@
   const keyDownHandler = (evt) => {
     if (evt.keyCode === window.evtButton.KEY_ENTER) {
       evt.preventDefault();
-      window.pageState(true);
+      window.activate.pageState(true);
     }
   };
 

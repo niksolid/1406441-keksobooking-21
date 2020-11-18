@@ -21,10 +21,10 @@
 
     window.util.closePopup();
     window.renderPins();
-    window.pageState(false);
+    pageState(false);
   };
 
-  window.pageState = (isActive) => {
+  const pageState = (isActive) => {
     if (isActive) {
       window.map.classList.remove(`map--faded`);
       window.adForm.classList.remove(`ad-form--disabled`);
@@ -53,6 +53,9 @@
     }
   };
 
-  window.pageState(false);
+  pageState(false);
 
+  window.activate = {
+    pageState: pageState,
+  }
 })();
