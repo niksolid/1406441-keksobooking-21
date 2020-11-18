@@ -79,6 +79,6 @@
   window.validation = {
     PIN_MAIN_HEIGHT: PIN_MAIN_HEIGHT,
     getAddress: getAddress
-  }
+  };
 
 })();

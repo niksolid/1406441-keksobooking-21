@@ -32,6 +32,6 @@
 
   window.loadData = {
     loadDataExport: loadData
-  }
+  };
 
 })();

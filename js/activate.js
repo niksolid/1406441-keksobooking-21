@@ -57,5 +57,5 @@
 
   window.activate = {
     pageState: pageState,
-  }
+  };
 })();

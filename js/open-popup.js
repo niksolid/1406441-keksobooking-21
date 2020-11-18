@@ -44,6 +44,6 @@
     }
   };
 
-  window.mapPins.addEventListener(`click`, popupClickHandler)
+  window.mapPins.addEventListener(`click`, window.popupClickHandler);
 
 })();

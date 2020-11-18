@@ -52,6 +52,6 @@
 
   window.data = {
     renderPins: renderPins
-  }
+  };
 
 })();

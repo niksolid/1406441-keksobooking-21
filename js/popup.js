@@ -3,7 +3,6 @@
 (() => {
   const replaceFeature = (popupCollection) => {
     const popupChild = popupCollection.popupFeatures.cloneNode(false);
-    console.log(popupCollection)
     popupCollection.pinObject.offer.features.forEach((item) => {
       popupChild.append(popupCollection.popupFeatures.querySelector(`.popup__feature--${item}`));
     });
@@ -40,7 +39,7 @@
       pinObject: pin,
       popupFeatures: popupFeatures,
       popupPhotos: popupPhotos
-    }
+    };
 
     const {author, offer} = pin;
 

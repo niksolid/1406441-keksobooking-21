@@ -82,6 +82,6 @@
 
   window.filtered = {
     filteredPins: filteredPins
-  }
+  };
 
 })();
