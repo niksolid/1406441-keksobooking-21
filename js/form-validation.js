@@ -8,7 +8,7 @@
   const addressInput = window.adForm.querySelector(`#address`);
   const capacityFragment = document.createDocumentFragment();
 
-  window.PIN_MAIN_HEIGHT = PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP
+  window.PIN_MAIN_HEIGHT = PIN_MAIN_SIZE + PIN_MAIN_SIZE_TIP;
 
   const minPrice = {
     bungalow: 0,

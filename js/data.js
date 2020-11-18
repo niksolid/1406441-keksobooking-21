@@ -16,7 +16,7 @@
   };
 
   const renderPlacesNearby = (pin) => {
-    const { location, author, offer } = pin;
+    const {location, author, offer} = pin;
     const pinElement = window.templates.pinMapTemplate.cloneNode(true);
     const pinImage = pinElement.querySelector(`img`);
     pinElement.style.top = location.x;
